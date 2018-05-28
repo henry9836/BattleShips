@@ -11,5 +11,5 @@
 
 
 void battle() {
-	srand((unsigned int)time(NULL));
+	
 }

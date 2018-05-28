@@ -1,3 +1,4 @@
 ﻿  init_battle.cpp
-e:\battleships\battleships\init_battle.cpp(106): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+e:\battleships\battleships\init_battle.cpp(102): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+e:\battleships\battleships\init_battle.cpp(181): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
   BattleShips.vcxproj -> E:\Battleships\x64\Debug\BattleShips.exe
