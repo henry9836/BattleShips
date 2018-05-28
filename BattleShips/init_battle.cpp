@@ -4,17 +4,17 @@
 #include <windows.h>
 #include <string>
 #include "animations.h"
+#include "ships.h"
+#include "mainmenu.h"
 
 using namespace std;
 
-void GotoXY(int _iX, int _iY) {
-	COORD point;
-	point.X = _iX;
-	point.Y = _iY;
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), point);
-}
-
 int start_init(int debug, string name){
+	char keyInput;
+	int asciiInput;
+	bool cancel = false;
+	bool boatsplaced = false;
+
 	system("cls");
 
 	int p1_1 = 0;
@@ -87,7 +87,44 @@ int start_init(int debug, string name){
 
 	//Player Select Positions
 
+	//random locations
 
+	//player picked locations
+
+	GotoXY(1, 1); // top left
+
+	while (boatsplaced == false) {
+		keyInput = _getch();
+		asciiInput = keyInput;
+
+		if (asciiInput == 27) { //esc button
+			animation(2);
+			cancel = true;
+			break;
+		}
+	
+		if (debug == true) {
+			cout << "Key: " << keyInput << " ascii value= " << asciiInput << endl;
+		}
+
+		if (asciiInput == 75) {
+			cout << "left ";
+		}
+		if (asciiInput == 72) {
+			cout << "up ";
+		}
+		if (asciiInput == 77) {
+			cout << "right ";
+		}
+		if (asciiInput == 80) {
+			cout << "down ";
+		}
+	}
+
+	if (cancel == true) {
+		mainmenu();
+		exit(0);
+	}
 
 	return 0;
 }

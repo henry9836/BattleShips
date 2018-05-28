@@ -7,11 +7,18 @@
 CHOICE ANIMATIONS
 
 1 - Banner
-2 - Explosion
+2 - Cancelled
 
 */
 
 using namespace std;
+
+void GotoXY(int _iX, int _iY) {
+	COORD point;
+	point.X = _iX;
+	point.Y = _iY;
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), point);
+}
 
 int animation(int choice) {
 	if (choice == 1) {
@@ -37,9 +44,9 @@ int animation(int choice) {
 
 		system("cls");
 		cout << "                              _____________           " << endl;
-		cout << "         /\\_________________ /             |          " << endl;
+		cout << "         //\_________________ /             |          " << endl;
 		cout << "   <==. +x|_________________|          ___ |          " << endl;
-		cout << "         \//                 |          ___ |          " << endl;
+		cout << "         \\/                 |          ___ |          " << endl;
 		cout << "                            |          ___ |          " << endl;
 		cout << "____________________________|______________|__________" << endl;
 		Beep(100, 250);
@@ -61,6 +68,20 @@ int animation(int choice) {
 		cout << "                                        | |        " << endl;
 		cout << "                                        |_|        " << endl;
 		Beep(250, 500);
+	}
+
+	if (choice == 2) {
+		system("COLOR 40");
+		system("cls");
+		GotoXY(20, 11);
+		cout << char(201) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(187) << endl;
+		GotoXY(20, 12);
+		cout << char(186) << "       GAME CANCELLED        " << char(186) << endl;
+		GotoXY(20, 13);
+		cout << char(200) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(188) << endl;
+		Beep(1200, 500);
+		Sleep(3000);
+		system("COLOR 0F");
 	}
 	return 0;
 }

@@ -9,6 +9,7 @@
 using namespace std;
 
 int mainmenu() {
+	system("COLOR 0F");
 	int choice = 1; //banner
 	animation(choice);
 	int debug;

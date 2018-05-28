@@ -3,21 +3,22 @@
 #define SHIPS
 
 class aircraft_carrier {
-	char ship[] = "#####";
+	public:
+		char ship[6] = "#####";
 };
 
 class battleship {
-	char ship[] = "####";
+	char ship[5] = "####";
 };
 
 class destroyer {
-	char ship[] = "###";
+	char ship[4] = "###";
 };
 
 class sub{
-	char ship[] = "###";
+	char ship[4] = "###";
 };
 
 class patrol_boat {
-	char ship[] = "##";
+	char ship[3] = "##";
 };
