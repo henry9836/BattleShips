@@ -85,5 +85,9 @@ int start_init(int debug, string name){
 		cout << endl << endl << endl;
 	}
 
+	//Player Select Positions
+
+
+
 	return 0;
 }
