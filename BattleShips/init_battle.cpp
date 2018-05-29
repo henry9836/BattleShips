@@ -186,7 +186,7 @@ int start_init(int debug, string name){
 			GotoXY(0, 28);
 			cout << "Magic Number: " << rand() % 1000000000 << endl;
 			GotoXY(0, 29);
-			cout << "Key: " << keyInput << " ascii value= " << asciiInput << endl;
+			cout << "Key: " << keyInput << " Ascii Value= " << asciiInput << endl;
 			GotoXY(x, y);
 		}
 
