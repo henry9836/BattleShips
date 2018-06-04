@@ -177,52 +177,124 @@ int start_init(int debug, string name){
 		}
 
 		if (asciiInput == 75) { //left
-
-			if (x != 1) {
-				Beep(1000, 50);
-				x -= 3;
-				xcord -= 1;
-				draw_grids(debug, name);
+			if (horizontal == false) {
+				if (x != 1) {
+					Beep(1000, 50);
+					x -= 3;
+					xcord -= 1;
+					draw_grids(debug, name);
+				}
+				else {
+					Beep(200, 50);
+				}
 			}
-			else {
-				Beep(200, 50);
+
+			if (horizontal == true) {
+				if (x != 1) {
+					Beep(1000, 50);
+					x -= 3;
+					xcord -= 1;
+					draw_grids(debug, name);
+				}
+				else {
+					Beep(200, 50);
+				}
 			}
 
 		}
 		if (asciiInput == 72) { //up
-
-			if (y != 1) {
-				Beep(1500, 50);
-				y -= 1;
-				ycord -= 1;
-				draw_grids(debug, name);
+			if (horizontal == false) {
+				if (y != 1) {
+					Beep(1500, 50);
+					y -= 1;
+					ycord -= 1;
+					draw_grids(debug, name);
+				}
+				else {
+					Beep(200, 50);
+				}
 			}
-			else {
-				Beep(200, 50);
+			if (horizontal == true) {
+				if (y != 1) {
+					Beep(1500, 50);
+					y -= 1;
+					ycord -= 1;
+					draw_grids(debug, name);
+				}
+				else {
+					Beep(200, 50);
+				}
 			}
 			
 		}
 		if (asciiInput == 77) { //right
-
-			if (x != 28) {
-				Beep(1000, 50);
-				x += 3;
-				xcord += 1;
-				draw_grids(debug, name);
+			if (horizontal == false) {
+				if (x != 28) {
+					Beep(1000, 50);
+					x += 3;
+					xcord += 1;
+					draw_grids(debug, name);
+				}
+				else {
+					Beep(200, 50);
+				}
 			}
-			else {
-				Beep(200, 50);
+			if (horizontal == true) {
+				if (x != 16) {
+					Beep(1000, 50);
+					x += 3;
+					xcord += 1;
+					draw_grids(debug, name);
+				}
+				else {
+					Beep(200, 50);
+				}
 			}
-
 		}
+
+		if (asciiInput == 114) { //r
+
+			if (horizontal == false) {
+				if (x <= 16) {
+					if (y <= 10) {
+						horizontal = !horizontal;
+						draw_grids(debug, name);
+						Beep(250, 50);
+					}
+				}
+			}
+			
+			else if (horizontal == true) {
+				if (x <= 28) {
+					if (y <= 6) {
+						horizontal = !horizontal;
+						draw_grids(debug, name);
+						Beep(250, 50);
+						
+					}
+				}
+			}
+		}
+
 		if (asciiInput == 80) { //down
 
 			if (shiptype == 5) { //aircraft carrier
-				if (y != 6) {
-					Beep(500, 50);
-					y += 1;
-					ycord += 1;
-					draw_grids(debug, name);
+				if (horizontal == false) {
+					if (y != 6) {
+						Beep(500, 50);
+						y += 1;
+						ycord += 1;
+						draw_grids(debug, name);
+					}
+				}
+
+				else if (horizontal == true) {
+					if (y != 10) {
+						Beep(500, 50);
+						y += 1;
+						ycord += 1;
+						draw_grids(debug, name);
+					}
 				}
 				else {
 					Beep(200, 50);
@@ -255,7 +327,17 @@ int start_init(int debug, string name){
 						p1_board[ycord+3][xcord] = " # ";
 						p1_board[ycord+4][xcord] = " # ";
 
-						//shiptype = 4;
+						shiptype = 4;
+					}
+
+					if (horizontal == true) {
+						p1_board[ycord][xcord] = " # "; // invert fix
+						p1_board[ycord][xcord + 1] = " # ";
+						p1_board[ycord][xcord + 2] = " # ";
+						p1_board[ycord][xcord + 3] = " # ";
+						p1_board[ycord][xcord + 4] = " # ";
+
+						shiptype = 4;
 					}
 				}
 
@@ -299,6 +381,17 @@ int start_init(int debug, string name){
 					GotoXY(x, y + i);
 					cout << "#";
 				}
+			}
+			if (horizontal == true) {
+				cout << "#";
+				GotoXY(x + 3, y);
+				cout << "#";
+				GotoXY(x + 6, y);
+				cout << "#";
+				GotoXY(x + 9, y);
+				cout << "#";
+				GotoXY(x + 12, y);
+				cout << "#";
 			}
 			GotoXY(x, y);
 		}
