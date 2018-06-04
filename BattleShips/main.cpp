@@ -51,8 +51,5 @@ int main() {
 	MoveWindow(console, w.left, w.top, 600, 550, TRUE); //Resize console window
 	mainmenu();
 
-	int iT;
-	cin >> iT;
-
 	return 0;
 }

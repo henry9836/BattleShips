@@ -38,5 +38,9 @@ int mainmenu() {
 		}
 		start_init(debug, name);
 	}
+
+	if (mainchoice == 3) {
+		animation(3);
+	}
 	return 0;
 }
