@@ -203,6 +203,7 @@ int start_init(int debug, string name){
 
 		}
 		if (asciiInput == 72) { //up
+
 			if (horizontal == false) {
 				if (y != 1) {
 					Beep(1500, 50);
@@ -227,54 +228,135 @@ int start_init(int debug, string name){
 			}
 			
 		}
+
 		if (asciiInput == 77) { //right
-			if (horizontal == false) {
-				if (x != 28) {
-					Beep(1000, 50);
-					x += 3;
-					xcord += 1;
-					draw_grids(debug, name);
+			if (shiptype == 5) {
+				if (horizontal == false) {
+					if (x != 28) {
+						Beep(1000, 50);
+						x += 3;
+						xcord += 1;
+						draw_grids(debug, name);
+					}
+					else {
+						Beep(200, 50);
+					}
 				}
-				else {
-					Beep(200, 50);
+				if (horizontal == true) {
+					if (x != 16) {
+						Beep(1000, 50);
+						x += 3;
+						xcord += 1;
+						draw_grids(debug, name);
+					}
+					else {
+						Beep(200, 50);
+					}
 				}
 			}
-			if (horizontal == true) {
-				if (x != 16) {
-					Beep(1000, 50);
-					x += 3;
-					xcord += 1;
-					draw_grids(debug, name);
+			if (shiptype == 4) {
+				if (horizontal == false) {
+					if (x != 28) {
+						Beep(1000, 50);
+						x += 3;
+						xcord += 1;
+						draw_grids(debug, name);
+					}
+					else {
+						Beep(200, 50);
+					}
 				}
-				else {
-					Beep(200, 50);
+				if (horizontal == true) {
+					if (x != 19) {
+						Beep(1000, 50);
+						x += 3;
+						xcord += 1;
+						draw_grids(debug, name);
+					}
+					else {
+						Beep(200, 50);
+					}
+				}
+			}
+
+			if (shiptype == 3) {
+				if (horizontal == false) {
+					if (x <= 27) {
+						Beep(1000, 50);
+						x += 3;
+						xcord += 1;
+						draw_grids(debug, name);
+					}
+					else {
+						Beep(200, 50);
+					}
+				}
+				if (horizontal == true) {
+					if (x <= 21) {
+						Beep(1000, 50);
+						x += 3;
+						xcord += 1;
+						draw_grids(debug, name);
+					}
+					else {
+						Beep(200, 50);
+					}
+				}
+			}
+
+			if (shiptype == 2) {
+				if (horizontal == false) {
+					if (x <= 27) {
+						Beep(1000, 50);
+						x += 3;
+						xcord += 1;
+						draw_grids(debug, name);
+					}
+					else {
+						Beep(200, 50);
+					}
+				}
+				if (horizontal == true) {
+					if (x <= 21) {
+						Beep(1000, 50);
+						x += 3;
+						xcord += 1;
+						draw_grids(debug, name);
+					}
+					else {
+						Beep(200, 50);
+					}
+				}
+			}
+
+
+			if (shiptype == 1) {
+				if (horizontal == false) {
+					if (x <= 28) {
+						Beep(1000, 50);
+						x += 3;
+						xcord += 1;
+						draw_grids(debug, name);
+					}
+					else {
+						Beep(200, 50);
+					}
+				}
+				if (horizontal == true) {
+					if (x < 25) {
+						Beep(1000, 50);
+						x += 3;
+						xcord += 1;
+						draw_grids(debug, name);
+					}
+					else {
+						Beep(200, 50);
+					}
 				}
 			}
 		}
 
-		if (asciiInput == 114) { //r
 
-			if (horizontal == false) {
-				if (x <= 16) {
-					if (y <= 10) {
-						horizontal = !horizontal;
-						draw_grids(debug, name);
-						Beep(250, 50);
-					}
-				}
-			}
-			
-			else if (horizontal == true) {
-				if (x <= 28) {
-					if (y <= 6) {
-						horizontal = !horizontal;
-						draw_grids(debug, name);
-						Beep(250, 50);
-						
-					}
-				}
-			}
-		}
 
 		if (asciiInput == 80) { //down
 
@@ -296,28 +378,274 @@ int start_init(int debug, string name){
 						draw_grids(debug, name);
 					}
 				}
-				else {
-					Beep(200, 50);
+			}
+			if (shiptype == 4) { //destoryer
+				if (horizontal == false) {
+					if (y != 7) {
+						Beep(500, 50);
+						y += 1;
+						ycord += 1;
+						draw_grids(debug, name);
+					}
+				}
+
+				else if (horizontal == true) {
+					if (y != 10) {
+						Beep(500, 50);
+						y += 1;
+						ycord += 1;
+						draw_grids(debug, name);
+					}
 				}
 			}
-			else { //default
-				if (y != 10) {
-					Beep(500, 50);
-					y += 1;
-					ycord += 1;
-					draw_grids(debug, name);
+
+			if (shiptype == 3) { //sub
+				if (horizontal == false) {
+					if (y != 8) {
+						Beep(500, 50);
+						y += 1;
+						ycord += 1;
+						draw_grids(debug, name);
+					}
 				}
-				else {
-					Beep(200, 50);
+
+				else if (horizontal == true) {
+					if (y != 10) {
+						Beep(500, 50);
+						y += 1;
+						ycord += 1;
+						draw_grids(debug, name);
+					}
 				}
 			}
+
+
+			if (shiptype == 2) { //battleship
+				if (horizontal == false) {
+					if (y != 8) {
+						Beep(500, 50);
+						y += 1;
+						ycord += 1;
+						draw_grids(debug, name);
+					}
+				}
+
+				else if (horizontal == true) {
+					if (y != 10) {
+						Beep(500, 50);
+						y += 1;
+						ycord += 1;
+						draw_grids(debug, name);
+					}
+				}
+			}
+
+			if (shiptype == 1) { //u-boat
+				if (horizontal == false) {
+					if (y != 9) {
+						Beep(500, 50);
+						y += 1;
+						ycord += 1;
+						draw_grids(debug, name);
+					}
+				}
+
+				else if (horizontal == true) {
+					if (y != 10) {
+						Beep(500, 50);
+						y += 1;
+						ycord += 1;
+						draw_grids(debug, name);
+					}
+				}
+			}
+
+			else {
+				Beep(200, 50);
+			}
+		}
+
+		if (asciiInput == 114) { //r
+			if (shiptype == 5) {
+				if (horizontal == false) {
+					if (x <= 16) {
+						if (y <= 10) {
+							horizontal = !horizontal;
+							draw_grids(debug, name);
+							Beep(250, 50);
+						}
+						else {
+							Beep(200, 50);
+						}
+					}
+					else {
+						Beep(200, 50);
+					}
+				}
+
+				else if (horizontal == true) {
+					if (x <= 28) {
+						if (y <= 6) {
+							horizontal = !horizontal;
+							draw_grids(debug, name);
+							Beep(250, 50);
+
+						}
+						else {
+							Beep(200, 50);
+						}
+					}
+					else {
+						Beep(200, 50);
+					}
+				}
+			}
+
+			if (shiptype == 4) {
+				if (horizontal == false) {
+					if (x <= 19) {
+						if (y <= 7) {
+							horizontal = !horizontal;
+							draw_grids(debug, name);
+							Beep(250, 50);
+						}
+						else {
+							Beep(200, 50);
+						}
+					}
+					else {
+						Beep(200, 50);
+					}
+				}
+
+				else if (horizontal == true) {
+					if (x <= 19) {
+						if (y <= 7) {
+							horizontal = !horizontal;
+							draw_grids(debug, name);
+							Beep(250, 50);
+
+						}
+						else {
+							Beep(200, 50);
+						}
+					}
+					else {
+						Beep(200, 50);
+					}
+				}
+			}
+
+			if (shiptype == 3) {
+				if (horizontal == false) {
+					if (x <= 22) {
+						if (y <= 10) {
+							horizontal = !horizontal;
+							draw_grids(debug, name);
+							Beep(250, 50);
+						}
+						else {
+							Beep(200, 50);
+						}
+					}
+					else {
+						Beep(200, 50);
+					}
+				}
+
+				else if (horizontal == true) {
+					if (x <= 28) {
+						if (y <= 8) {
+							horizontal = !horizontal;
+							draw_grids(debug, name);
+							Beep(250, 50);
+
+						}
+						else {
+							Beep(200, 50);
+						}
+					}
+					else {
+						Beep(200, 50);
+					}
+				}
+			}
+
+			if (shiptype == 2) {
+				if (horizontal == false) {
+					if (x <= 22) {
+						if (y <= 10) {
+							horizontal = !horizontal;
+							draw_grids(debug, name);
+							Beep(250, 50);
+						}
+						else {
+							Beep(200, 50);
+						}
+					}
+					else {
+						Beep(200, 50);
+					}
+				}
+
+				else if (horizontal == true) {
+					if (x <= 28) {
+						if (y <= 8) {
+							horizontal = !horizontal;
+							draw_grids(debug, name);
+							Beep(250, 50);
+
+						}
+						else {
+							Beep(200, 50);
+						}
+					}
+					else {
+						Beep(200, 50);
+					}
+				}
+			}
+
+			if (shiptype == 1) {
+				if (horizontal == false) {
+					if (x <= 25) {
+						if (y <= 10) {
+							horizontal = !horizontal;
+							draw_grids(debug, name);
+							Beep(250, 50);
+						}
+						else {
+							Beep(200, 50);
+						}
+					}
+					else {
+						Beep(200, 50);
+					}
+				}
+
+				else if (horizontal == true) {
+					if (x <= 25) {
+						if (y <= 9) {
+							horizontal = !horizontal;
+							draw_grids(debug, name);
+							Beep(250, 50);
+
+						}
+						else {
+							Beep(200, 50);
+						}
+					}
+					else {
+						Beep(200, 50);
+					}
+				}
+			}
+
 		}
 
 		if (asciiInput == 13) { //enter
 
 			if (x != 28) {
-				Beep(1750, 50);
-
 				//set ships
 				if (shiptype == 5) {
 					if (horizontal == false) {
@@ -327,7 +655,7 @@ int start_init(int debug, string name){
 						p1_board[ycord+3][xcord] = " # ";
 						p1_board[ycord+4][xcord] = " # ";
 
-						shiptype = 4;
+						
 					}
 
 					if (horizontal == true) {
@@ -336,14 +664,65 @@ int start_init(int debug, string name){
 						p1_board[ycord][xcord + 2] = " # ";
 						p1_board[ycord][xcord + 3] = " # ";
 						p1_board[ycord][xcord + 4] = " # ";
-
-						shiptype = 4;
 					}
 				}
+				if (shiptype == 4) {
+					if (horizontal == false) {
+						p1_board[ycord][xcord] = " # "; // invert fix
+						p1_board[ycord + 1][xcord] = " # ";
+						p1_board[ycord + 2][xcord] = " # ";
+						p1_board[ycord + 3][xcord] = " # ";
+					}
 
+					if (horizontal == true) {
+						p1_board[ycord][xcord] = " # "; // invert fix
+						p1_board[ycord][xcord + 1] = " # ";
+						p1_board[ycord][xcord + 2] = " # ";
+						p1_board[ycord][xcord + 3] = " # ";
+					}
+				}
+				if (shiptype == 3) {
+					if (horizontal == false) {
+						p1_board[ycord][xcord] = " # "; // invert fix
+						p1_board[ycord + 1][xcord] = " # ";
+						p1_board[ycord + 2][xcord] = " # ";
+					}
+
+					if (horizontal == true) {
+						p1_board[ycord][xcord] = " # "; // invert fix
+						p1_board[ycord][xcord + 1] = " # ";
+						p1_board[ycord][xcord + 2] = " # ";
+					}
+				}
+				if (shiptype == 2) {
+					if (horizontal == false) {
+						p1_board[ycord][xcord] = " # "; // invert fix
+						p1_board[ycord + 1][xcord] = " # ";
+						p1_board[ycord + 2][xcord] = " # ";
+					}
+
+					if (horizontal == true) {
+						p1_board[ycord][xcord] = " # "; // invert fix
+						p1_board[ycord][xcord + 1] = " # ";
+						p1_board[ycord][xcord + 2] = " # ";
+					}
+				}
+				if (shiptype == 1) {
+					if (horizontal == false) {
+						p1_board[ycord][xcord] = " # "; // invert fix
+						p1_board[ycord + 1][xcord] = " # ";
+					}
+
+					if (horizontal == true) {
+						p1_board[ycord][xcord] = " # "; // invert fix
+						p1_board[ycord][xcord + 1] = " # ";
+					}
+				}
+				if (shiptype > 0) {
+					shiptype -= 1;
+				}
+				Beep(1750, 50);
 				draw_grids(debug, name);
-				/*xcord = 0;
-				ycord = 0;*/
 				GotoXY(1,1);
 			}
 			else {
@@ -374,10 +753,12 @@ int start_init(int debug, string name){
 			GotoXY(x, y);
 		}
 
+		//print ship on screen
+
 		if (shiptype == 5) { //maxs y:6 x:?
 			if (horizontal == false) {
 				cout << "#";
-				for (int i = 0; i < 5; i++) { //print ship on screen
+				for (int i = 0; i < 5; i++) { 
 					GotoXY(x, y + i);
 					cout << "#";
 				}
@@ -395,7 +776,82 @@ int start_init(int debug, string name){
 			}
 			GotoXY(x, y);
 		}
+
+		if (shiptype == 4) { //maxs y:? x:?
+			if (horizontal == false) {
+				cout << "#";
+				for (int i = 0; i < 4; i++) {
+					GotoXY(x, y + i);
+					cout << "#";
+				}
+			}
+			if (horizontal == true) {
+				cout << "#";
+				GotoXY(x + 3, y);
+				cout << "#";
+				GotoXY(x + 6, y);
+				cout << "#";
+				GotoXY(x + 9, y);
+				cout << "#";
+			}
+			GotoXY(x, y);
+		}
+
+		if (shiptype == 3) { //maxs y:? x:?
+			if (horizontal == false) {
+				cout << "#";
+				for (int i = 0; i < 3; i++) {
+					GotoXY(x, y + i);
+					cout << "#";
+				}
+			}
+			if (horizontal == true) {
+				cout << "#";
+				GotoXY(x + 3, y);
+				cout << "#";
+				GotoXY(x + 6, y);
+				cout << "#";
+			}
+			GotoXY(x, y);
+		}
+
+
+		if (shiptype == 2) { //maxs y:? x:?
+			if (horizontal == false) {
+				cout << "#";
+				for (int i = 0; i < 3; i++) {
+					GotoXY(x, y + i);
+					cout << "#";
+				}
+			}
+			if (horizontal == true) {
+				cout << "#";
+				GotoXY(x + 3, y);
+				cout << "#";
+				GotoXY(x + 6, y);
+				cout << "#";
+			}
+			GotoXY(x, y);
+		}
+
+		if (shiptype == 1) { //maxs y:? x:?
+			if (horizontal == false) {
+				cout << "#";
+				for (int i = 0; i < 2; i++) {
+					GotoXY(x, y + i);
+					cout << "#";
+				}
+			}
+			if (horizontal == true) {
+				cout << "#";
+				GotoXY(x + 3, y);
+				cout << "#";
+			}
+			GotoXY(x, y);
+		}
+
 	}
+
 
 	if (cancel == true) {
 		mainmenu();

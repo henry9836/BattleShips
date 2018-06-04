@@ -22,6 +22,8 @@ A summary of the game must be displayed when a game is over, clearly identifying
 The game must provide a Debug mode that displays all the four grids (Player-Computer Ship placement grid and Player- Computer hit/miss grid) in game. 
 The debug mode must be accessible from the main menu screen
 
+1 5ship, 1 4ship, 2 3ship, 1 2ship
+
 CHECKLIST
 
 [x] Display 4 Grids
