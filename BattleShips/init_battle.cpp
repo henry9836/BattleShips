@@ -18,8 +18,9 @@ string p2_board2[10][10]; //hits and misses
 bool checkforships(int ship, int xcord, int ycord, bool horizontal, int debug) {
 	bool result = false;
 
+	if (ship == 5) {
 		if (horizontal == false) {
-			if (p1_board[ycord][xcord] == " # ") {
+			if ((p1_board[ycord][xcord] == " # ") || (p1_board[ycord + 1][xcord] == " # ") || (p1_board[ycord + 2][xcord] == " # ") || (p1_board[ycord + 3][xcord] == " # ") || (p1_board[ycord + 4][xcord] == " # ")) {
 				result = false;
 			}
 			else {
@@ -27,23 +28,100 @@ bool checkforships(int ship, int xcord, int ycord, bool horizontal, int debug) {
 			}
 		}
 		if (horizontal == true) {
-			if (p1_board[ycord][xcord] == " # "){
+			if (p1_board[ycord][xcord] == " # " || (p1_board[ycord][xcord + 1] == " # ") || (p1_board[ycord][xcord + 2] == " # ") || (p1_board[ycord][xcord + 3] == " # ") || (p1_board[ycord][xcord + 4] == " # ")) {
 				result = false;
 			}
 			else {
 				result = true;
 			}
 		}
-		if (debug == true) {
-			if (result == true) {
-				cout << "Approved";
-			}
+	}
 
-			if (result == false) {
-				cout << "Denied";
+		if (ship == 4) {
+			if (horizontal == false) {
+				if ((p1_board[ycord][xcord] == " # ") || (p1_board[ycord + 1][xcord] == " # ") || (p1_board[ycord + 2][xcord] == " # ") || (p1_board[ycord + 3][xcord] == " # ")) {
+					result = false;
+				}
+				else {
+					result = true;
+				}
+			}
+			if (horizontal == true) {
+				if (p1_board[ycord][xcord] == " # " || (p1_board[ycord][xcord + 1] == " # ") || (p1_board[ycord][xcord + 2] == " # ") || (p1_board[ycord][xcord + 3] == " # ")) {
+					result = false;
+				}
+				else {
+					result = true;
+				}
 			}
 		}
 
+		if (ship == 3) {
+			if (horizontal == false) {
+				if ((p1_board[ycord][xcord] == " # ") || (p1_board[ycord + 1][xcord] == " # ") || (p1_board[ycord + 2][xcord] == " # ")) {
+					result = false;
+				}
+				else {
+					result = true;
+				}
+			}
+			if (horizontal == true) {
+				if (p1_board[ycord][xcord] == " # " || (p1_board[ycord][xcord + 1] == " # ") || (p1_board[ycord][xcord + 2] == " # ")) {
+					result = false;
+				}
+				else {
+					result = true;
+				}
+			}
+		}
+
+		if (ship == 2) {
+			if (horizontal == false) {
+				if ((p1_board[ycord][xcord] == " # ") || (p1_board[ycord + 1][xcord] == " # ") || (p1_board[ycord + 2][xcord] == " # ")) {
+					result = false;
+				}
+				else {
+					result = true;
+				}
+			}
+			if (horizontal == true) {
+				if (p1_board[ycord][xcord] == " # " || (p1_board[ycord][xcord + 1] == " # ") || (p1_board[ycord][xcord + 2] == " # ")) {
+					result = false;
+				}
+				else {
+					result = true;
+				}
+			}
+		}
+
+		if (ship == 1) {
+			if (horizontal == false) {
+				if ((p1_board[ycord][xcord] == " # ") || (p1_board[ycord + 1][xcord] == " # ")) {
+					result = false;
+				}
+				else {
+					result = true;
+				}
+			}
+			if (horizontal == true) {
+				if (p1_board[ycord][xcord] == " # " || (p1_board[ycord][xcord + 1] == " # ")) {
+					result = false;
+				}
+				else {
+					result = true;
+				}
+			}
+
+		}
+	if (debug == true) {
+		if (result == true) {
+			cout << "Approved";
+		}
+
+		if (result == false) {
+			cout << "Denied";
+		}
+	}
 	return result;
 }
 
@@ -792,8 +870,6 @@ int start_init(int debug, string name){
 								p1_board[ycord][xcord] = " # "; // invert fix
 								p1_board[ycord][xcord + 1] = " # ";
 							}
-
-							//boatsplaced = true;
 						}
 
 						else {
@@ -802,6 +878,10 @@ int start_init(int debug, string name){
 					}
 					if ((shiptype > 0) && (ibooltmp == true)) {
 						shiptype -= 1;
+						if (shiptype == 0) {
+							boatsplaced = true;
+							break;
+						}
 					}
 					Beep(1750, 50);
 					draw_grids(debug, name);
