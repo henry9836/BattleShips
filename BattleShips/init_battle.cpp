@@ -15,31 +15,34 @@ string p1_board2[10][10]; //hits and misses
 string p2_board[10][10]; //ships
 string p2_board2[10][10]; //hits and misses
 
-bool checkforships(int ship, int x, int y, bool horizontal) {
+bool checkforships(int ship, int xcord, int ycord, bool horizontal, int debug) {
 	bool result = false;
-	
-	if (ship == 1) {
+
 		if (horizontal == false) {
-			if ((p1_board[x][y] != "#") && (p1_board[x][y+1] != "#")) {
-				result = true;
+			if (p1_board[ycord][xcord] == " # ") {
+				result = false;
 			}
 			else {
-				result = false;
+				result = true;
 			}
 		}
 		if (horizontal == true) {
-			if ((p1_board[x][y] != "#") && (p1_board[x+1][y] != "#")) {
-				result = true;
-			}
-			else {
+			if (p1_board[ycord][xcord] == " # "){
 				result = false;
 			}
+			else {
+				result = true;
+			}
 		}
-	}
+		if (debug == true) {
+			if (result == true) {
+				cout << "Approved";
+			}
 
-	if (result == false) {
-		cout << "Denied";
-	}
+			if (result == false) {
+				cout << "Denied";
+			}
+		}
 
 	return result;
 }
@@ -691,73 +694,93 @@ int start_init(int debug, string name){
 			}
 
 			if (asciiInput == 13) { //enter
-
+				bool ibooltmp = false;
 				if (x != 28) {
 					//set ships
-					if (shiptype == 5) {
-						if (horizontal == false) {
-							p1_board[ycord][xcord] = " # "; // invert fix
-							p1_board[ycord + 1][xcord] = " # ";
-							p1_board[ycord + 2][xcord] = " # ";
-							p1_board[ycord + 3][xcord] = " # ";
-							p1_board[ycord + 4][xcord] = " # ";
+					
+					ibooltmp = checkforships(shiptype, xcord, ycord, horizontal, debug);
+
+					if (ibooltmp == true){
+						if (shiptype == 5) {
+							if (horizontal == false) {
+								p1_board[ycord][xcord] = " # "; // invert fix
+								p1_board[ycord + 1][xcord] = " # ";
+								p1_board[ycord + 2][xcord] = " # ";
+								p1_board[ycord + 3][xcord] = " # ";
+								p1_board[ycord + 4][xcord] = " # ";
 
 
-						}
+							}
 
-						if (horizontal == true) {
-							p1_board[ycord][xcord] = " # "; // invert fix
-							p1_board[ycord][xcord + 1] = " # ";
-							p1_board[ycord][xcord + 2] = " # ";
-							p1_board[ycord][xcord + 3] = " # ";
-							p1_board[ycord][xcord + 4] = " # ";
+							if (horizontal == true) {
+								p1_board[ycord][xcord] = " # "; // invert fix
+								p1_board[ycord][xcord + 1] = " # ";
+								p1_board[ycord][xcord + 2] = " # ";
+								p1_board[ycord][xcord + 3] = " # ";
+								p1_board[ycord][xcord + 4] = " # ";
+							}
 						}
 					}
 					if (shiptype == 4) {
-						if (horizontal == false) {
-							p1_board[ycord][xcord] = " # "; // invert fix
-							p1_board[ycord + 1][xcord] = " # ";
-							p1_board[ycord + 2][xcord] = " # ";
-							p1_board[ycord + 3][xcord] = " # ";
-						}
 
-						if (horizontal == true) {
-							p1_board[ycord][xcord] = " # "; // invert fix
-							p1_board[ycord][xcord + 1] = " # ";
-							p1_board[ycord][xcord + 2] = " # ";
-							p1_board[ycord][xcord + 3] = " # ";
+						ibooltmp = checkforships(shiptype, xcord, ycord, horizontal, debug);
+
+						if (ibooltmp == true) {
+							if (horizontal == false) {
+								p1_board[ycord][xcord] = " # "; // invert fix
+								p1_board[ycord + 1][xcord] = " # ";
+								p1_board[ycord + 2][xcord] = " # ";
+								p1_board[ycord + 3][xcord] = " # ";
+							}
+
+							if (horizontal == true) {
+								p1_board[ycord][xcord] = " # "; // invert fix
+								p1_board[ycord][xcord + 1] = " # ";
+								p1_board[ycord][xcord + 2] = " # ";
+								p1_board[ycord][xcord + 3] = " # ";
+							}
 						}
 					}
 					if (shiptype == 3) {
-						if (horizontal == false) {
-							p1_board[ycord][xcord] = " # "; // invert fix
-							p1_board[ycord + 1][xcord] = " # ";
-							p1_board[ycord + 2][xcord] = " # ";
-						}
 
-						if (horizontal == true) {
-							p1_board[ycord][xcord] = " # "; // invert fix
-							p1_board[ycord][xcord + 1] = " # ";
-							p1_board[ycord][xcord + 2] = " # ";
+						ibooltmp = checkforships(shiptype, xcord, ycord, horizontal, debug);
+
+						if (ibooltmp == true){
+							if (horizontal == false) {
+								p1_board[ycord][xcord] = " # "; // invert fix
+								p1_board[ycord + 1][xcord] = " # ";
+								p1_board[ycord + 2][xcord] = " # ";
+							}
+
+							if (horizontal == true) {
+								p1_board[ycord][xcord] = " # "; // invert fix
+								p1_board[ycord][xcord + 1] = " # ";
+								p1_board[ycord][xcord + 2] = " # ";
+							}
 						}
 					}
 					if (shiptype == 2) {
-						if (horizontal == false) {
-							p1_board[ycord][xcord] = " # "; // invert fix
-							p1_board[ycord + 1][xcord] = " # ";
-							p1_board[ycord + 2][xcord] = " # ";
-						}
 
-						if (horizontal == true) {
-							p1_board[ycord][xcord] = " # "; // invert fix
-							p1_board[ycord][xcord + 1] = " # ";
-							p1_board[ycord][xcord + 2] = " # ";
+						ibooltmp = checkforships(shiptype, xcord, ycord, horizontal, debug);
+
+						if (ibooltmp == true) {
+							if (horizontal == false) {
+								p1_board[ycord][xcord] = " # "; // invert fix
+								p1_board[ycord + 1][xcord] = " # ";
+								p1_board[ycord + 2][xcord] = " # ";
+							}
+
+							if (horizontal == true) {
+								p1_board[ycord][xcord] = " # "; // invert fix
+								p1_board[ycord][xcord + 1] = " # ";
+								p1_board[ycord][xcord + 2] = " # ";
+							}
 						}
 					}
 					if (shiptype == 1) {
 
-						bool ibooltmp;
-						ibooltmp = checkforships(shiptype, xcord, ycord, horizontal);
+						
+						ibooltmp = checkforships(shiptype, xcord, ycord, horizontal, debug);
 						
 						if (ibooltmp == true) {
 							if (horizontal == false) {
@@ -772,11 +795,12 @@ int start_init(int debug, string name){
 
 							//boatsplaced = true;
 						}
+
 						else {
 							Beep(200, 50);
 						}
 					}
-					if (shiptype > 0) {
+					if ((shiptype > 0) && (ibooltmp == true)) {
 						shiptype -= 1;
 					}
 					Beep(1750, 50);
