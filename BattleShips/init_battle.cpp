@@ -15,6 +15,36 @@ string p1_board2[10][10]; //hits and misses
 string p2_board[10][10]; //ships
 string p2_board2[10][10]; //hits and misses
 
+bool checkforships(int ship, int x, int y, bool horizontal) {
+	bool result = false;
+	
+	if (ship == 1) {
+		if (horizontal == false) {
+			if ((p1_board[x][y] != "#") && (p1_board[x][y+1] != "#")) {
+				result = true;
+			}
+			else {
+				result = false;
+			}
+		}
+		if (horizontal == true) {
+			if ((p1_board[x][y] != "#") && (p1_board[x+1][y] != "#")) {
+				result = true;
+			}
+			else {
+				result = false;
+			}
+		}
+	}
+
+	if (result == false) {
+		cout << "Denied";
+	}
+
+	return result;
+}
+
+
 void draw_grids(int debug, string name) {
 	system("cls");
 
@@ -725,14 +755,25 @@ int start_init(int debug, string name){
 						}
 					}
 					if (shiptype == 1) {
-						if (horizontal == false) {
-							p1_board[ycord][xcord] = " # "; // invert fix
-							p1_board[ycord + 1][xcord] = " # ";
-						}
 
-						if (horizontal == true) {
-							p1_board[ycord][xcord] = " # "; // invert fix
-							p1_board[ycord][xcord + 1] = " # ";
+						bool ibooltmp;
+						ibooltmp = checkforships(shiptype, xcord, ycord, horizontal);
+						
+						if (ibooltmp == true) {
+							if (horizontal == false) {
+								p1_board[ycord][xcord] = " # "; // invert fix
+								p1_board[ycord + 1][xcord] = " # ";
+							}
+
+							if (horizontal == true) {
+								p1_board[ycord][xcord] = " # "; // invert fix
+								p1_board[ycord][xcord + 1] = " # ";
+							}
+
+							//boatsplaced = true;
+						}
+						else {
+							Beep(200, 50);
 						}
 					}
 					if (shiptype > 0) {
@@ -748,7 +789,7 @@ int start_init(int debug, string name){
 
 			}
 
-			if (debug == true) {
+			if (debug == true) {//
 				GotoXY(0, 26);
 				cout << "[DEBUG MODE]" << endl;
 				GotoXY(0, 27);
@@ -766,7 +807,7 @@ int start_init(int debug, string name){
 				GotoXY(0, 30);
 				cout << "                                                ";
 				GotoXY(0, 30);
-				cout << "p1_board[" << xcord << ", " << ycord << "] = " << p1_board[xcord, ycord];
+				cout << "p1_board[" << xcord << ", " << ycord << "] = " << p1_board[ycord][xcord];
 				GotoXY(x, y);
 			}
 
@@ -865,9 +906,6 @@ int start_init(int debug, string name){
 					cout << "#";
 				}
 				GotoXY(x, y);
-
-				boatsplaced = true;
-				break;
 			}
 
 		}
@@ -893,6 +931,8 @@ int start_init(int debug, string name){
 		mainmenu();
 		exit(0);
 	}
+
+
 
 	return 0;
 }
