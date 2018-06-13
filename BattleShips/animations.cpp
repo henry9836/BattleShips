@@ -44,7 +44,7 @@ int animation(int choice) {
 
 		system("cls");
 		cout << "                              _____________           " << endl;
-		cout << "         //\_________________ /             |          " << endl;
+		cout << "         //\_________________//             |          " << endl;
 		cout << "   <==. +x|_________________|          ___ |          " << endl;
 		cout << "         \\/                 |          ___ |          " << endl;
 		cout << "                            |          ___ |          " << endl;
