@@ -1022,6 +1022,15 @@ int start_init(int debug, string name){
 
 			int dir = (rand() % 2) + 1;//1 = horizontal 2 = veritcal
 
+			if (shiptype == 5) {
+				if (dir == 1) {
+
+				}
+				int dir = (rand() % 2) + 1;
+			}
+
+
+
 			cout << dir;
 
 
