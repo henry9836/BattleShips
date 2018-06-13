@@ -1,15 +1,13 @@
 ﻿  init_battle.cpp
-d:\battleships\battleships\init_battle.cpp(118): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
-d:\battleships\battleships\init_battle.cpp(288): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
-d:\battleships\battleships\init_battle.cpp(778): error C2065: 'ibooltmp': undeclared identifier
-d:\battleships\battleships\init_battle.cpp(778): warning C4805: '==': unsafe mix of type 'unknown-type' and type 'bool' in operation
-d:\battleships\battleships\init_battle.cpp(795): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
-d:\battleships\battleships\init_battle.cpp(921): error C2059: syntax error: 'if'
-d:\battleships\battleships\init_battle.cpp(921): error C2143: syntax error: missing ';' before '{'
-d:\battleships\battleships\init_battle.cpp(921): error C2447: '{': missing function header (old-style formal list?)
-d:\battleships\battleships\init_battle.cpp(961): error C2059: syntax error: 'if'
-d:\battleships\battleships\init_battle.cpp(961): error C2143: syntax error: missing ';' before '{'
-d:\battleships\battleships\init_battle.cpp(961): error C2447: '{': missing function header (old-style formal list?)
-d:\battleships\battleships\init_battle.cpp(968): error C2059: syntax error: 'return'
-d:\battleships\battleships\init_battle.cpp(969): error C2059: syntax error: '}'
-d:\battleships\battleships\init_battle.cpp(969): error C2143: syntax error: missing ';' before '}'
+d:\battleships\battleships\init_battle.cpp(23): error C3861: 'checkforships': identifier not found
+d:\battleships\battleships\init_battle.cpp(48): error C3861: 'checkforships': identifier not found
+d:\battleships\battleships\init_battle.cpp(68): error C3861: 'checkforships': identifier not found
+d:\battleships\battleships\init_battle.cpp(86): error C3861: 'checkforships': identifier not found
+d:\battleships\battleships\init_battle.cpp(105): error C3861: 'checkforships': identifier not found
+d:\battleships\battleships\init_battle.cpp(126): error C2065: 'boatsplaced': undeclared identifier
+d:\battleships\battleships\init_battle.cpp(131): error C2065: 'name': undeclared identifier
+d:\battleships\battleships\init_battle.cpp(131): error C3861: 'draw_grids': identifier not found
+d:\battleships\battleships\init_battle.cpp(127): error C2043: illegal break
+d:\battleships\battleships\init_battle.cpp(234): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+d:\battleships\battleships\init_battle.cpp(404): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+d:\battleships\battleships\init_battle.cpp(900): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
