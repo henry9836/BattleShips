@@ -241,7 +241,6 @@ void AI_turn(Player player, AI ai, bool isAI, bool turndone, int x, int y, bool 
 		didIhittheplayer = Fire(xcord, ycord, isAI, ai_ycord, ai_xcord, p1_board, p1_board2, p2_board, p2_board2);
 		draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
 		if (phealth <= 0) {
-			isAI = false;
 			turndone = true;
 			break;
 		}
@@ -302,22 +301,24 @@ bool battle(int debug, string name, string p1_board[10][10], string p1_board2[10
 			/* PLAYER TURN */
 			isAI = false;
 			player_turn(player, ai, isAI, turndone, x, y, cancel, ycord, xcord, ai_ycord, ai_xcord, debug, name, p1_board, p1_board2, p2_board, p2_board2);
-			draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
 
 			if (ai.health <= 0) {
 				playerwin = true;
 				break;
 			}
 
+			draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
+
 			/* AI TURN */
 			isAI = true;
 			AI_turn(player, ai, isAI, turndone, x, y, cancel, ycord, xcord, ai_ycord, ai_xcord, debug, name, p1_board, p1_board2, p2_board, p2_board2);
-			draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
 
 			if (player.health <= 0) {
 				playerwin = false;
 				break;
 			}
+
+			draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
 		}
 
 		/* END GAME */
@@ -330,9 +331,6 @@ bool battle(int debug, string name, string p1_board[10][10], string p1_board2[10
 		else {
 			animation(5);
 		}
-
-		system("pause");
-
 		return false;
 	}
 }

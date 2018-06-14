@@ -37,6 +37,7 @@ int mainmenu() {
 			debug = 0;
 		}
 		start_init(debug, name);
+		mainmenu();
 	}
 
 	if (mainchoice == 3) {

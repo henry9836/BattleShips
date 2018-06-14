@@ -35,8 +35,8 @@ CHECKLIST
 [X] Ship Classes
 [X] Can shoot boats
 [X] AI
-[] Know when game is over
-[] Summary Of Game After Finished
+[X] Know when game is over
+[X] Summary Of Game After Finished
 [] Better AI that can try take out ships
 
 */
