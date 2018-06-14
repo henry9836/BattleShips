@@ -1,16 +1,4 @@
-﻿  animations.cpp
-o:\battleships\battleships\animations.cpp(48): warning C4129: '_': unrecognized character escape sequence
-  battle.cpp
-  init_battle.cpp
-o:\battleships\battleships\init_battle.cpp(117): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
-o:\battleships\battleships\init_battle.cpp(227): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
-o:\battleships\battleships\init_battle.cpp(598): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
-o:\battleships\battleships\init_battle.cpp(714): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
-o:\battleships\battleships\init_battle.cpp(848): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
-o:\battleships\battleships\init_battle.cpp(1357): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
-  maimmenu.cpp
-  main.cpp
-  Generating Code...
-o:\battleships\battleships\init_battle.cpp(390): warning C4715: 'placeships': not all control paths return a value
-o:\battleships\battleships\init_battle.cpp(479): warning C4715: 'AIplaceships': not all control paths return a value
+﻿  battle.cpp
+o:\battleships\battleships\battle.cpp(135): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+o:\battleships\battleships\battle.cpp(168): warning C4715: 'battle': not all control paths return a value
   BattleShips.vcxproj -> O:\Battleships\x64\Debug\BattleShips.exe
