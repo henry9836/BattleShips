@@ -202,12 +202,9 @@ bool placeships(int x, int shiptype, int xcord, int ycord, bool horizontal, int 
 					p1_board[ycord][xcord + 4] = " # ";
 				}
 			}
-		}
-		if (shiptype == 4) {
+			if (shiptype == 4) {
 
-			ibooltmp = checkforships(shiptype, xcord, ycord, horizontal, debug);
 
-			if (ibooltmp == true) {
 				if (horizontal == false) {
 					p1_board[ycord][xcord] = " # "; // invert fix
 					p1_board[ycord + 1][xcord] = " # ";
@@ -221,13 +218,27 @@ bool placeships(int x, int shiptype, int xcord, int ycord, bool horizontal, int 
 					p1_board[ycord][xcord + 2] = " # ";
 					p1_board[ycord][xcord + 3] = " # ";
 				}
+
 			}
-		}
-		if (shiptype == 3) {
+			if (shiptype == 3) {
 
-			ibooltmp = checkforships(shiptype, xcord, ycord, horizontal, debug);
 
-			if (ibooltmp == true) {
+				if (horizontal == false) {
+					p1_board[ycord][xcord] = " # "; // invert fix
+					p1_board[ycord + 1][xcord] = " # ";
+					p1_board[ycord + 2][xcord] = " # ";
+				}
+
+				if (horizontal == true) {
+					p1_board[ycord][xcord] = " # "; // invert fix
+					p1_board[ycord][xcord + 1] = " # ";
+					p1_board[ycord][xcord + 2] = " # ";
+				}
+
+			}
+			if (shiptype == 2) {
+
+
 				if (horizontal == false) {
 					p1_board[ycord][xcord] = " # "; // invert fix
 					p1_board[ycord + 1][xcord] = " # ";
@@ -240,31 +251,10 @@ bool placeships(int x, int shiptype, int xcord, int ycord, bool horizontal, int 
 					p1_board[ycord][xcord + 2] = " # ";
 				}
 			}
-		}
-		if (shiptype == 2) {
-
-			ibooltmp = checkforships(shiptype, xcord, ycord, horizontal, debug);
-
-			if (ibooltmp == true) {
-				if (horizontal == false) {
-					p1_board[ycord][xcord] = " # "; // invert fix
-					p1_board[ycord + 1][xcord] = " # ";
-					p1_board[ycord + 2][xcord] = " # ";
-				}
-
-				if (horizontal == true) {
-					p1_board[ycord][xcord] = " # "; // invert fix
-					p1_board[ycord][xcord + 1] = " # ";
-					p1_board[ycord][xcord + 2] = " # ";
-				}
-			}
-		}
-		if (shiptype == 1) {
+			if (shiptype == 1) {
 
 
-			ibooltmp = checkforships(shiptype, xcord, ycord, horizontal, debug);
 
-			if (ibooltmp == true) {
 				if (horizontal == false) {
 					p1_board[ycord][xcord] = " # "; // invert fix
 					p1_board[ycord + 1][xcord] = " # ";
@@ -276,26 +266,18 @@ bool placeships(int x, int shiptype, int xcord, int ycord, bool horizontal, int 
 				}
 			}
 
-			else {
-				Beep(200, 50);
-			}
+			Beep(1750, 50);
+			draw_grids(debug, name);
+			GotoXY(1, 1);
+			return true;
 		}
-		if ((shiptype > 0) && (ibooltmp == true)) {
-			shiptype -= 1;
-			if (shiptype == 0) {
-				boatsplaced = true;
-				Beep(1750, 50);
-				draw_grids(debug, name);
-				GotoXY(1, 1);
-				return(boatsplaced);
-			}
+		else {
+			Beep(200, 50);
+			return false;
 		}
-		Beep(1750, 50);
-		draw_grids(debug, name);
-		GotoXY(1, 1);
-		return false;
 	}
 }
+
 
 int start_init(int debug, string name) {
 
@@ -892,10 +874,21 @@ int start_init(int debug, string name) {
 			}
 
 			if (asciiInput == 13) { //enter
+				bool ibT;
+				ibT = placeships(x, shiptype, xcord, ycord, horizontal, debug, name, boatsplaced);
 				
-				/*else {
-					Beep(200, 50);
-				}*/
+				if (ibT == true) {
+					if ((shiptype > 0)) {
+						shiptype -= 1;
+						if (shiptype == 0) {
+							boatsplaced = true;
+							Beep(1750, 50);
+							draw_grids(debug, name);
+							GotoXY(1, 1);
+							break;
+						}
+					}
+				}
 
 			}
 
@@ -1050,7 +1043,8 @@ int start_init(int debug, string name) {
 
 
 
-			cout << dir;
+			cout << rx;
+			cout << ry;
 
 
 
