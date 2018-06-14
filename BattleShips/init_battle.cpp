@@ -7,6 +7,7 @@
 #include "animations.h"
 #include "ships.h"
 #include "mainmenu.h"
+#include "battle.h"
 
 using namespace std;
 
@@ -738,7 +739,6 @@ void randomisedplacement(bool boatsplaced, int shiptype, bool horizontal, int de
 	}
 
 }
-
 
 int start_init(int debug, string name) {
 
@@ -1495,8 +1495,8 @@ int start_init(int debug, string name) {
 		exit(0);
 	}
 
-	int it;
-	cin >> it;
+	bool endgame;
+	endgame = battle(debug, name, p1_board, p1_board2, p2_board, p2_board2);
 
 	return 0;
 }

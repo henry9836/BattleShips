@@ -6,6 +6,7 @@
 #include "animations.h"
 #include "battle_init.h"
 #include "mainmenu.h"
+#include "battle.h"
 
 
 /*
@@ -29,9 +30,9 @@ CHECKLIST
 [x] Display 4 Grids
 [x] Debug Mode that shows all grids (accessible in main menu)
 [x] Display only player grids for playing
-[] Ship Classes
-[] Randomly pick Boat Locations
-[] Player Can Pick Boat Locations
+[X] Randomly pick Boat Locations
+[X] Player Can Pick Boat Locations
+[X] Ship Classes
 [] AI
 [] Summary Of Game After Finished
 
