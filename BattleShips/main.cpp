@@ -34,7 +34,7 @@ CHECKLIST
 [X] Player Can Pick Boat Locations
 [X] Ship Classes
 [X] Can shoot boats
-[] AI
+[X] AI
 [] Know when game is over
 [] Summary Of Game After Finished
 [] Better AI that can try take out ships

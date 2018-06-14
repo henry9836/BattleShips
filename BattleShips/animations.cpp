@@ -9,6 +9,7 @@ CHOICE ANIMATIONS
 
 1 - Banner
 2 - Cancelled
+3 - Quiting
 
 */
 

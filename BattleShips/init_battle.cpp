@@ -5,7 +5,6 @@
 #include <windows.h>
 #include <string>
 #include "animations.h"
-#include "ships.h"
 #include "mainmenu.h"
 #include "battle.h"
 
@@ -258,7 +257,6 @@ void draw_grids(int debug, string name) {
 				if (debug == 1) {
 					if (h == 2) {
 						if (p2_1 == 0) {
-							//GotoXY(100, 0);
 							p2_1 = 1;
 							cout << "AI's Ships: " << endl;
 						}

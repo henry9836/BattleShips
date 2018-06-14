@@ -41,10 +41,10 @@
     <ClInclude Include="mainmenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ships.h">
+    <ClInclude Include="battle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="battle.h">
+    <ClInclude Include="classes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

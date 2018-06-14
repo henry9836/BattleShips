@@ -121,8 +121,8 @@
     <ClInclude Include="animations.h" />
     <ClInclude Include="battle.h" />
     <ClInclude Include="battle_init.h" />
+    <ClInclude Include="classes.h" />
     <ClInclude Include="mainmenu.h" />
-    <ClInclude Include="ships.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

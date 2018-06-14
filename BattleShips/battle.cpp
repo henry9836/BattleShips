@@ -8,6 +8,7 @@
 #include "battle_init.h"
 #include "battle.h"
 #include "mainmenu.h"
+#include "classes.h"
 
 using namespace std;
 
