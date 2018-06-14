@@ -1,4 +1,6 @@
 ﻿  battle.cpp
-o:\battleships\battleships\battle.cpp(135): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
-o:\battleships\battleships\battle.cpp(168): warning C4715: 'battle': not all control paths return a value
+o:\battleships\battleships\battle.cpp(191): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+o:\battleships\battleships\battle.cpp(234): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+o:\battleships\battleships\battle.cpp(120): warning C4715: 'Fire': not all control paths return a value
+o:\battleships\battleships\battle.cpp(295): warning C4715: 'battle': not all control paths return a value
   BattleShips.vcxproj -> O:\Battleships\x64\Debug\BattleShips.exe

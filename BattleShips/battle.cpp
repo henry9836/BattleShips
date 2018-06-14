@@ -2,6 +2,8 @@
 #include <windows.h>
 #include <conio.h>
 #include <string>
+#include <cstdlib>
+#include <ctime>
 #include "animations.h"
 #include "battle_init.h"
 #include "battle.h"
@@ -13,6 +15,7 @@ bool gameover = false;
 
 void draw_grids(int debug, string name, string p1_board[10][10], string p1_board2[10][10], string p2_board[10][10], string p2_board2[10][10]) {
 	system("cls");
+	GotoXY(0, 0);
 
 	int p1_1 = 0;
 	int p2_1 = 0;
@@ -61,108 +64,231 @@ void draw_grids(int debug, string name, string p1_board[10][10], string p1_board
 	}
 }
 
+bool Fire(int xcord, int ycord, int ai_ycord, int ai_xcord, bool isAI, string p1_board[10][10], string p1_board2[10][10], string p2_board[10][10], string p2_board2[10][10]) {
+	
+	if (isAI == false) {
+		if ((p2_board[ycord][xcord] != " X ") && (p2_board[ycord][xcord] != " o ")) {
+			if (p2_board[ycord][xcord] == " # ") {
+				p2_board[ycord][xcord] = " X ";
+				p1_board2[ycord][xcord] = " X ";
+				Beep(300, 50);
+				Beep(3000, 50);
+				return true;
+			}
+			else {
+				p2_board[ycord][xcord] = " o ";
+				p1_board2[ycord][xcord] = " o ";
+				Beep(300, 50);
+				Beep(100, 50);
+				return false;
+			}
+		}
+		else {
+			Beep(100, 50);
+		}
+	}
+
+	else if (isAI == true) {
+
+			while (p1_board[ai_ycord][ai_xcord] == " X " || p1_board[ai_ycord][ai_xcord] == " o ") {
+				ai_xcord = (rand() % 10);
+				ai_ycord = (rand() % 10);
+				if (p1_board[ai_ycord][ai_xcord] != " X " && p1_board[ai_ycord][ai_xcord] != " o ") {
+					break;
+				}
+			}
+
+			if (p1_board[ai_ycord][ai_xcord] == " # ") {
+				p2_board2[ai_ycord][ai_xcord] = " X ";
+				p1_board[ai_ycord][ai_xcord] = " X ";
+				Beep(300, 50);
+				Beep(3000, 50);
+				return true;
+			}
+			else {
+				p2_board2[ai_ycord][ai_xcord] = " o ";
+				p1_board[ai_ycord][ai_xcord] = " o ";
+				Beep(300, 50);
+				Beep(100, 50);
+				return false;
+			}
+		}
+	else {
+		Beep(250, 10000);
+		return false;
+	}
+}
+
+void player_turn(bool isAI, bool turndone, int x, int y, bool cancel, int ycord, int xcord, int ai_ycord, int ai_xcord, int debug, string name, string p1_board[10][10], string p1_board2[10][10], string p2_board[10][10], string p2_board2[10][10]) {
+	char keyInput;
+	int asciiInput;
+	isAI = false;
+	turndone = false;
+
+	while (turndone == false) {
+
+		//MOVE CURSOR
+
+		GotoXY(x, y);
+		keyInput = _getch();
+		asciiInput = keyInput;
+
+		/*if (asciiInput == 27) { //esc button
+		animation(2);
+		cancel = true;
+		break;
+		}*/
+
+		if (asciiInput == 72 && y != 1) { //up
+			Beep(1500, 50);
+			y -= 1;
+			ycord -= 1;
+			GotoXY(x, y);
+			draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
+			cout << "*";
+		}
+
+		if (asciiInput == 75 && x != 33) { //left
+			x -= 3;
+			xcord -= 1;
+			GotoXY(x, y);
+			Beep(1000, 50);
+			draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
+			cout << "*";
+		}
+
+		if (asciiInput == 77 && x != 60) { //right
+			x += 3;
+			xcord += 1;
+			GotoXY(x, y);
+			Beep(1000, 50);
+			draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
+			cout << "*";
+		}
+
+		if (asciiInput == 80 && y != 10) {//down
+			y += 1;
+			ycord += 1;
+			GotoXY(x, y);
+			Beep(500, 50);
+			draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
+			cout << "*";
+		}
+
+		if (asciiInput == 13) { //enter
+			isAI = false;
+			bool didIhittheAI = false;
+			didIhittheAI = Fire(xcord, ycord, isAI, ai_ycord, ai_xcord, p1_board, p1_board2, p2_board, p2_board2);
+			if (didIhittheAI != true) {
+				isAI = true;
+				turndone = true;
+				break;
+			}
+			draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
+		}
+
+
+		if (debug == true) { //Debug
+			GotoXY(0, 26);
+			cout << "[DEBUG MODE]" << endl;
+			GotoXY(0, 27);
+			cout << "                                                ";
+			GotoXY(0, 27);
+			cout << "X: " << x << " Y: " << y << endl;
+			GotoXY(0, 28);
+			cout << "                                                ";
+			GotoXY(0, 28);
+			cout << "Magic Number: " << rand() % 1000000000 << endl;
+			GotoXY(0, 29);
+			cout << "                                                ";
+			GotoXY(0, 29);
+			cout << "p1_board2[" << xcord << ", " << ycord << "] = " << p1_board2[ycord][xcord];
+			GotoXY(0, 30);
+			cout << "p2_board[" << xcord << ", " << ycord << "] = " << p2_board[ycord][xcord];
+			GotoXY(1, 1);
+		}
+
+	}
+
+	return;
+}
+
+void AI_turn(bool isAI, bool turndone, int x, int y, bool cancel, int ycord, int xcord, int ai_ycord, int ai_xcord, int debug, string name, string p1_board[10][10], string p1_board2[10][10], string p2_board[10][10], string p2_board2[10][10]) {
+
+	isAI = true;
+	turndone = false;
+
+	while (turndone == false) {
+		isAI = true;
+		ai_xcord = (rand() % 10);
+		ai_ycord = (rand() % 10);
+		bool didIhittheplayer = false;
+		didIhittheplayer = Fire(xcord, ycord, isAI, ai_ycord, ai_xcord, p1_board, p1_board2, p2_board, p2_board2);
+		draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
+		if (didIhittheplayer != true) {
+			isAI = false;
+			turndone = true;
+			break;
+		}
+
+		if (debug == true) { //Debug
+			GotoXY(0, 26);
+			cout << "[DEBUG MODE]" << endl;
+			GotoXY(0, 27);
+			cout << "                                                ";
+			GotoXY(0, 27);
+			cout << "X: " << x << " Y: " << y << endl;
+			GotoXY(0, 28);
+			cout << "                                                ";
+			GotoXY(0, 28);
+			cout << "Magic Number: " << rand() % 1000000000 << endl;
+			GotoXY(0, 29);
+			cout << "                                                ";
+			GotoXY(0, 29);
+			cout << "p1_board2[" << xcord << ", " << ycord << "] = " << p1_board2[ycord][xcord];
+			GotoXY(0, 30);
+			cout << "p2_board[" << xcord << ", " << ycord << "] = " << p2_board[ycord][xcord];
+			GotoXY(1, 1);
+		}
+
+	}
+
+	return;
+}
+
 bool battle(int debug, string name, string p1_board[10][10], string p1_board2[10][10], string p2_board[10][10], string p2_board2[10][10]) {
 
 	draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
 	bool cancel = false;
+	bool isAI = false;
 
 	while (gameover == false) {
 
-		/* PLAYER TURN */
+		
 		int x = 33;
 		int y = 1;
 		int xcord = 0;
 		int ycord = 0;
-		char keyInput;
-		int asciiInput;
+		int ai_ycord = 0;
+		int ai_xcord = 0;
 		bool turndone = false;
 
-		while (turndone == false) {
-
-			//MOVE CURSOR
-
-			GotoXY(x, y);
-			keyInput = _getch();
-			asciiInput = keyInput;
-
-			if (asciiInput == 27) { //esc button
-				animation(2);
-				//cancel = true;
-				break;
-			}
-
-			if (asciiInput == 72 && y != 1) { //up
-				Beep(1500, 50);
-				y -= 1;
-				ycord -= 1;
-				GotoXY(x, y);
-				draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
-				cout << "*";
-			}
-
-			if (asciiInput == 75 && x != 33) { //left
-				x -= 3;
-				xcord -= 1;
-				GotoXY(x, y);
-				Beep(1000, 50);
-				draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
-				cout <<  "*";
-			}
-
-			if (asciiInput == 77 && x != 60) { //right
-				x += 3;
-				xcord += 1;
-				GotoXY(x, y);
-				Beep(1000, 50);
-				draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
-				cout << "*";
-			}
-
-			if (asciiInput == 80 && y != 10) {//down
-				y += 1;
-				ycord += 1;
-				GotoXY(x, y);
-				Beep(500, 50);
-				draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
-				cout << "*";
-			}
-
-			if (asciiInput == 13) { //enter
-				draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
-			}
-
-
-			if (debug == true) {//
-				GotoXY(0, 26);
-				cout << "[DEBUG MODE]" << endl;
-				GotoXY(0, 27);
-				cout << "                                                ";
-				GotoXY(0, 27);
-				cout << "X: " << x << " Y: " << y << endl;
-				GotoXY(0, 28);
-				cout << "                                                ";
-				GotoXY(0, 28);
-				cout << "Magic Number: " << rand() % 1000000000 << endl;
-				GotoXY(0, 29);
-				cout << "                                                ";
-				GotoXY(0, 29);
-				cout << "p1_board2[" << xcord << ", " << ycord << "] = " << p1_board2[ycord][xcord];
-				GotoXY(0, 30);
-				cout << "p2_board[" << xcord << ", " << ycord << "] = " << p2_board[ycord][xcord];
-				GotoXY(1, 1);
-			}
+		/*LOOP LOOKING FOR # IN BOTH GRIDS*/
+		while (1 == 1) {
+			/* PLAYER TURN */
+			isAI = false;
+			player_turn(isAI, turndone, x, y, cancel, ycord, xcord, ai_ycord, ai_xcord, debug, name, p1_board, p1_board2, p2_board, p2_board2);
+			draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
 
 			/* AI TURN */
-
-
-
+			isAI = true;
+			AI_turn(isAI, turndone, x, y, cancel, ycord, xcord, ai_ycord, ai_xcord, debug, name, p1_board, p1_board2, p2_board, p2_board2);
+			draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
 		}
+
 		//return true for player win, false for ai win
 
-		if (cancel == true) {
-			mainmenu();
-			return false;
-		}
+
 
 		return false;
 	}
