@@ -1,7 +1,10 @@
 ﻿  init_battle.cpp
 o:\battleships\battleships\init_battle.cpp(116): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
-o:\battleships\battleships\init_battle.cpp(388): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
-o:\battleships\battleships\init_battle.cpp(895): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
-o:\battleships\battleships\init_battle.cpp(1132): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
-o:\battleships\battleships\init_battle.cpp(279): warning C4715: 'placeships': not all control paths return a value
+o:\battleships\battleships\init_battle.cpp(226): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+o:\battleships\battleships\init_battle.cpp(597): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+o:\battleships\battleships\init_battle.cpp(713): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+o:\battleships\battleships\init_battle.cpp(848): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+o:\battleships\battleships\init_battle.cpp(1357): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+o:\battleships\battleships\init_battle.cpp(389): warning C4715: 'placeships': not all control paths return a value
+o:\battleships\battleships\init_battle.cpp(478): warning C4715: 'AIplaceships': not all control paths return a value
   BattleShips.vcxproj -> O:\Battleships\x64\Debug\BattleShips.exe

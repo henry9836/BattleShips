@@ -125,6 +125,116 @@ bool checkforships(int ship, int xcord, int ycord, bool horizontal, int debug) {
 	return result;
 }
 
+bool AIcheckforships(int ship, int xcord, int ycord, bool horizontal, int debug) {
+	bool result = false;
+
+	if (ship == 5) {
+		if (horizontal == false) {
+			if ((p2_board[ycord][xcord] == " # ") || (p2_board[ycord + 1][xcord] == " # ") || (p2_board[ycord + 2][xcord] == " # ") || (p2_board[ycord + 3][xcord] == " # ") || (p2_board[ycord + 4][xcord] == " # ")) {
+				result = false;
+			}
+			else {
+				result = true;
+			}
+		}
+		if (horizontal == true) {
+			if (p2_board[ycord][xcord] == " # " || (p2_board[ycord][xcord + 1] == " # ") || (p2_board[ycord][xcord + 2] == " # ") || (p2_board[ycord][xcord + 3] == " # ") || (p2_board[ycord][xcord + 4] == " # ")) {
+				result = false;
+			}
+			else {
+				result = true;
+			}
+		}
+	}
+
+	if (ship == 4) {
+		if (horizontal == false) {
+			if ((p2_board[ycord][xcord] == " # ") || (p2_board[ycord + 1][xcord] == " # ") || (p2_board[ycord + 2][xcord] == " # ") || (p2_board[ycord + 3][xcord] == " # ")) {
+				result = false;
+			}
+			else {
+				result = true;
+			}
+		}
+		if (horizontal == true) {
+			if (p2_board[ycord][xcord] == " # " || (p2_board[ycord][xcord + 1] == " # ") || (p2_board[ycord][xcord + 2] == " # ") || (p2_board[ycord][xcord + 3] == " # ")) {
+				result = false;
+			}
+			else {
+				result = true;
+			}
+		}
+	}
+
+	if (ship == 3) {
+		if (horizontal == false) {
+			if ((p2_board[ycord][xcord] == " # ") || (p2_board[ycord + 1][xcord] == " # ") || (p2_board[ycord + 2][xcord] == " # ")) {
+				result = false;
+			}
+			else {
+				result = true;
+			}
+		}
+		if (horizontal == true) {
+			if (p2_board[ycord][xcord] == " # " || (p2_board[ycord][xcord + 1] == " # ") || (p2_board[ycord][xcord + 2] == " # ")) {
+				result = false;
+			}
+			else {
+				result = true;
+			}
+		}
+	}
+
+	if (ship == 2) {
+		if (horizontal == false) {
+			if ((p2_board[ycord][xcord] == " # ") || (p2_board[ycord + 1][xcord] == " # ") || (p2_board[ycord + 2][xcord] == " # ")) {
+				result = false;
+			}
+			else {
+				result = true;
+			}
+		}
+		if (horizontal == true) {
+			if (p2_board[ycord][xcord] == " # " || (p2_board[ycord][xcord + 1] == " # ") || (p2_board[ycord][xcord + 2] == " # ")) {
+				result = false;
+			}
+			else {
+				result = true;
+			}
+		}
+	}
+
+	if (ship == 1) {
+		if (horizontal == false) {
+			if ((p2_board[ycord][xcord] == " # ") || (p2_board[ycord + 1][xcord] == " # ")) {
+				result = false;
+			}
+			else {
+				result = true;
+			}
+		}
+		if (horizontal == true) {
+			if (p2_board[ycord][xcord] == " # " || (p2_board[ycord][xcord + 1] == " # ")) {
+				result = false;
+			}
+			else {
+				result = true;
+			}
+		}
+
+	}
+	if (debug == true) {
+		if (result == true) {
+			cout << "Approved";
+		}
+
+		if (result == false) {
+			cout << "Denied";
+		}
+	}
+	return result;
+}
+
 void draw_grids(int debug, string name) {
 	system("cls");
 
@@ -278,9 +388,361 @@ bool placeships(int x, int shiptype, int xcord, int ycord, bool horizontal, int 
 	}
 }
 
+bool AIplaceships(int x, int shiptype, int xcord, int ycord, bool horizontal, int debug, string name, bool boatsplaced) {
+
+	bool ibooltmp = false;
+	if (x != 28) {
+
+		ibooltmp = AIcheckforships(shiptype, xcord, ycord, horizontal, debug);
+
+		if (ibooltmp == true) {
+			if (shiptype == 5) {
+				if (horizontal == false) {
+					p2_board[ycord][xcord] = " # "; // invert fix
+					p2_board[ycord + 1][xcord] = " # ";
+					p2_board[ycord + 2][xcord] = " # ";
+					p2_board[ycord + 3][xcord] = " # ";
+					p2_board[ycord + 4][xcord] = " # ";
+				}
+
+				if (horizontal == true) {
+					p2_board[ycord][xcord] = " # "; // invert fix
+					p2_board[ycord][xcord + 1] = " # ";
+					p2_board[ycord][xcord + 2] = " # ";
+					p2_board[ycord][xcord + 3] = " # ";
+					p2_board[ycord][xcord + 4] = " # ";
+				}
+			}
+			if (shiptype == 4) {
+				if (horizontal == false) {
+					p2_board[ycord][xcord] = " # "; // invert fix
+					p2_board[ycord + 1][xcord] = " # ";
+					p2_board[ycord + 2][xcord] = " # ";
+					p2_board[ycord + 3][xcord] = " # ";
+				}
+
+				if (horizontal == true) {
+					p2_board[ycord][xcord] = " # "; // invert fix
+					p2_board[ycord][xcord + 1] = " # ";
+					p2_board[ycord][xcord + 2] = " # ";
+					p2_board[ycord][xcord + 3] = " # ";
+				}
+
+			}
+			if (shiptype == 3) {
+				if (horizontal == false) {
+					p2_board[ycord][xcord] = " # "; // invert fix
+					p2_board[ycord + 1][xcord] = " # ";
+					p2_board[ycord + 2][xcord] = " # ";
+				}
+
+				if (horizontal == true) {
+					p2_board[ycord][xcord] = " # "; // invert fix
+					p2_board[ycord][xcord + 1] = " # ";
+					p2_board[ycord][xcord + 2] = " # ";
+				}
+
+			}
+			if (shiptype == 2) {
+				if (horizontal == false) {
+					p2_board[ycord][xcord] = " # "; // invert fix
+					p2_board[ycord + 1][xcord] = " # ";
+					p2_board[ycord + 2][xcord] = " # ";
+				}
+
+				if (horizontal == true) {
+					p2_board[ycord][xcord] = " # "; // invert fix
+					p2_board[ycord][xcord + 1] = " # ";
+					p2_board[ycord][xcord + 2] = " # ";
+				}
+			}
+			if (shiptype == 1) {
+				if (horizontal == false) {
+					p2_board[ycord][xcord] = " # "; // invert fix
+					p2_board[ycord + 1][xcord] = " # ";
+				}
+
+				if (horizontal == true) {
+					p2_board[ycord][xcord] = " # "; // invert fix
+					p2_board[ycord][xcord + 1] = " # ";
+				}
+			}
+			draw_grids(debug, name);
+			GotoXY(1, 1);
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+}
+
+void randomisedplacement(bool boatsplaced, int shiptype, bool horizontal, int debug, string name, int x, int y, int xcord, int ycord, bool isAI) {
+	int rx;
+	int ry;
+	bool tmpbool;
+
+	srand((unsigned int)time(NULL));
+
+	while (boatsplaced == false) {
+
+		/*
+		hor x 5, 6, 9, 9, 9
+		hor y 9, 9, 7, 7, 8
+
+		ver x 9, 9, 9, 9, 9
+		ver y 5, 6, 7, 7, 8
+
+
+		*/
+
+		int dir = (rand() % 100) + 1; //1-50 = horizontal 51-100 = veritcal
+
+		if (isAI == false) {
+			if (shiptype == 5) {
+				if (dir <= 50) {
+					rx = (rand() % 5);
+					ry = (rand() % 9);
+					horizontal = true;
+					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (dir >= 51) {
+					rx = (rand() % 9);
+					ry = (rand() % 5);
+					horizontal = false;
+					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (tmpbool == true) {
+					shiptype -= 1;
+				}
+				draw_grids(debug, name);
+			}
+			if (shiptype == 4) {
+				if (dir <= 50) {
+					rx = (rand() % 6);
+					ry = (rand() % 9);
+					horizontal = true;
+					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (dir >= 51) {
+					rx = (rand() % 9);
+					ry = (rand() % 6);
+					horizontal = false;
+					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (tmpbool == true) {
+					shiptype -= 1;
+				}
+				draw_grids(debug, name);
+
+			}
+			if (shiptype == 3) {
+				if (dir <= 50) {
+					rx = (rand() % 9);
+					ry = (rand() % 7);
+					horizontal = true;
+					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (dir >= 51) {
+					rx = (rand() % 7);
+					ry = (rand() % 9);
+					horizontal = false;
+					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (tmpbool == true) {
+					shiptype -= 1;
+				}
+				draw_grids(debug, name);
+
+			}
+			if (shiptype == 2) {
+				if (dir <= 50) {
+					rx = (rand() % 9);
+					ry = (rand() % 7);
+					horizontal = true;
+					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (dir >= 51) {
+					rx = (rand() % 7);
+					ry = (rand() % 9);
+					horizontal = false;
+					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (tmpbool == true) {
+					shiptype -= 1;
+				}
+				draw_grids(debug, name);
+
+			}
+			if (shiptype == 1) {
+				if (dir <= 50) {
+					rx = (rand() % 9);
+					ry = (rand() % 8);
+					horizontal = true;
+					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (dir >= 51) {
+					rx = (rand() % 8);
+					ry = (rand() % 9);
+					horizontal = false;
+					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (tmpbool == true) {
+					shiptype -= 1;
+				}
+				draw_grids(debug, name);
+
+			}
+
+			if (debug == true) {//
+				GotoXY(0, 26);
+				cout << "[DEBUG MODE]" << endl;
+				GotoXY(0, 27);
+				cout << "                                                ";
+				GotoXY(0, 27);
+				cout << "X: " << x << " Y: " << y << endl;
+				GotoXY(0, 28);
+				cout << "                                                ";
+				GotoXY(0, 28);
+				cout << "Magic Number: " << rand() % 1000000000 << endl;
+				GotoXY(0, 29);
+				cout << "                                                ";
+				GotoXY(0, 29);
+				cout << "p1_board[" << xcord << ", " << ycord << "] = " << p1_board[ycord][xcord];
+				GotoXY(1, 1);
+			}
+
+		}
+
+		if (isAI == true) {
+			if (shiptype == 5) {
+				if (dir <= 50) {
+					rx = (rand() % 5);
+					ry = (rand() % 9);
+					horizontal = true;
+					tmpbool = AIplaceships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (dir >= 51) {
+					rx = (rand() % 9);
+					ry = (rand() % 5);
+					horizontal = false;
+					tmpbool = AIplaceships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (tmpbool == true) {
+					shiptype -= 1;
+				}
+				draw_grids(debug, name);
+			}
+			if (shiptype == 4) {
+				if (dir <= 50) {
+					rx = (rand() % 6);
+					ry = (rand() % 9);
+					horizontal = true;
+					tmpbool = AIplaceships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (dir >= 51) {
+					rx = (rand() % 9);
+					ry = (rand() % 6);
+					horizontal = false;
+					tmpbool = AIplaceships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (tmpbool == true) {
+					shiptype -= 1;
+				}
+				draw_grids(debug, name);
+
+			}
+			if (shiptype == 3) {
+				if (dir <= 50) {
+					rx = (rand() % 9);
+					ry = (rand() % 7);
+					horizontal = true;
+					tmpbool = AIplaceships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (dir >= 51) {
+					rx = (rand() % 7);
+					ry = (rand() % 9);
+					horizontal = false;
+					tmpbool = AIplaceships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (tmpbool == true) {
+					shiptype -= 1;
+				}
+				draw_grids(debug, name);
+
+			}
+			if (shiptype == 2) {
+				if (dir <= 50) {
+					rx = (rand() % 9);
+					ry = (rand() % 7);
+					horizontal = true;
+					tmpbool = AIplaceships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (dir >= 51) {
+					rx = (rand() % 7);
+					ry = (rand() % 9);
+					horizontal = false;
+					tmpbool = AIplaceships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (tmpbool == true) {
+					shiptype -= 1;
+				}
+				draw_grids(debug, name);
+
+			}
+			if (shiptype == 1) {
+				if (dir <= 50) {
+					rx = (rand() % 9);
+					ry = (rand() % 8);
+					horizontal = true;
+					tmpbool = AIplaceships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (dir >= 51) {
+					rx = (rand() % 8);
+					ry = (rand() % 9);
+					horizontal = false;
+					tmpbool = AIplaceships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (tmpbool == true) {
+					shiptype -= 1;
+				}
+				draw_grids(debug, name);
+
+			}
+
+			if (debug == true) {//
+				GotoXY(0, 26);
+				cout << "[DEBUG MODE]" << endl;
+				GotoXY(0, 27);
+				cout << "                                                ";
+				GotoXY(0, 27);
+				cout << "X: " << x << " Y: " << y << endl;
+				GotoXY(0, 28);
+				cout << "                                                ";
+				GotoXY(0, 28);
+				cout << "Magic Number: " << rand() % 1000000000 << endl;
+				GotoXY(0, 29);
+				cout << "                                                ";
+				GotoXY(0, 29);
+				cout << "p1_board[" << xcord << ", " << ycord << "] = " << p1_board[ycord][xcord];
+				GotoXY(1, 1);
+			}
+
+		}
+
+		if (shiptype == 0) {
+			boatsplaced = true;
+			break;
+		}
+
+	}
+
+}
+
 
 int start_init(int debug, string name) {
 
+	bool isAI = false;
 	srand((unsigned int)time(NULL));
 	char keyInput;
 	int asciiInput;
@@ -389,6 +851,8 @@ int start_init(int debug, string name) {
 	else {
 		system("COLOR 17");
 	}
+
+	//selected player spots
 	if (tmp == "s") {
 		while (boatsplaced == false) {
 
@@ -1013,148 +1477,18 @@ int start_init(int debug, string name) {
 
 	//randomised player spots
 	if (tmp == "r") {
-		srand((unsigned int)time(NULL));
-		int rx;
-		int ry;
-		bool tmpbool;
-		while (boatsplaced == false) {
-
-			/*
-			hor x 5, 6, 9, 9, 9
-			hor y 9, 9, 7, 7, 8
-
-			ver x 9, 9, 9, 9, 9
-			ver y 5, 6, 7, 7, 8
-
-			
-			*/
-
-			int dir = (rand() % 100) + 1;//1-50 = horizontal 51-100 = veritcal
-
-		
-			if (shiptype == 5) {
-				if (dir <= 50) {
-					rx = (rand() % 5);
-					ry = (rand() % 9);
-					horizontal = true;
-					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
-				}
-				if (dir >= 51) {
-					rx = (rand() % 9);
-					ry = (rand() % 5);
-					horizontal = false;
-					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
-				}
-				if (tmpbool == true) {
-					shiptype -= 1;
-				}
-				draw_grids(debug, name);
-			}
-			if (shiptype == 4) {
-				if (dir <= 50) {
-					rx = (rand() % 6);
-					ry = (rand() % 9);
-					horizontal = true;
-					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
-				}
-				if (dir >= 51) {
-					rx = (rand() % 9);
-					ry = (rand() % 6);
-					horizontal = false;
-					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
-				}
-				if (tmpbool == true) {
-					shiptype -= 1;
-				}
-				draw_grids(debug, name);
-				
-			}
-			if (shiptype == 3) {
-				if (dir <= 50) {
-					rx = (rand() % 9);
-					ry = (rand() % 7);
-					horizontal = true;
-					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
-				}
-				if (dir >= 51) {
-					rx = (rand() % 7);
-					ry = (rand() % 9);
-					horizontal = false;
-					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
-				}
-				if (tmpbool == true) {
-					shiptype -= 1;
-				}
-				draw_grids(debug, name);
-
-			}
-			if (shiptype == 2) {
-				if (dir <= 50) {
-					rx = (rand() % 9);
-					ry = (rand() % 7);
-					horizontal = true;
-					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
-				}
-				if (dir >= 51) {
-					rx = (rand() % 7);
-					ry = (rand() % 9);
-					horizontal = false;
-					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
-				}
-				if (tmpbool == true) {
-					shiptype -= 1;
-				}
-				draw_grids(debug, name);
-
-			}
-			if (shiptype == 1) {
-				if (dir <= 50) {
-					rx = (rand() % 9);
-					ry = (rand() % 8);
-					horizontal = true;
-					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
-				}
-				if (dir >= 51) {
-					rx = (rand() % 8);
-					ry = (rand() % 9);
-					horizontal = false;
-					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
-				}
-				if (tmpbool == true) {
-					shiptype -= 1;
-				}
-				draw_grids(debug, name);
-
-			}
-			
-			if (debug == true) {//
-				GotoXY(0, 26);
-				cout << "[DEBUG MODE]" << endl;
-				GotoXY(0, 27);
-				cout << "                                                ";
-				GotoXY(0, 27);
-				cout << "X: " << x << " Y: " << y << endl;
-				GotoXY(0, 28);
-				cout << "                                                ";
-				GotoXY(0, 28);
-				cout << "Magic Number: " << rand() % 1000000000 << endl;
-				GotoXY(0, 29);
-				cout << "                                                ";
-				GotoXY(0, 29);
-				cout << "p1_board[" << xcord << ", " << ycord << "] = " << p1_board[ycord][xcord];
-				GotoXY(1, 1);
-			}
-
-			if (shiptype == 0) {
-				boatsplaced = true;
-				break;
-			}
-
-		}
-
+		randomisedplacement(boatsplaced, shiptype, horizontal, debug, name, x, y, xcord, ycord, isAI);
+		draw_grids(debug, name);
 	}
 
 	/* -=  AI PLACEMENT =-  */
+
+	boatsplaced = false;
+	shiptype = 5;
+	isAI = true;
+	randomisedplacement(boatsplaced, shiptype, horizontal, debug, name, x, y, xcord, ycord, isAI);
+	draw_grids(debug, name);
+
 
 	if (cancel == true) {
 		mainmenu();
