@@ -1,2 +1,5 @@
-﻿  maimmenu.cpp
+﻿  battle.cpp
+e:\battleships\battleships\battle.cpp(227): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+e:\battleships\battleships\battle.cpp(286): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+e:\battleships\battleships\battle.cpp(368): warning C4715: 'battle': not all control paths return a value
   BattleShips.vcxproj -> E:\Battleships\x64\Debug\BattleShips.exe

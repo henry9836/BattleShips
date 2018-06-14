@@ -12,7 +12,7 @@
 
 using namespace std;
 
-Player player;
+Player player; // TF: Class Instance
 AI ai;
 
 bool gameover = false;
@@ -70,12 +70,12 @@ void draw_grids(int debug, string name, string p1_board[10][10], string p1_board
 
 bool Fire(int xcord, int ycord, int ai_ycord, int ai_xcord, bool isAI, string p1_board[10][10], string p1_board2[10][10], string p2_board[10][10], string p2_board2[10][10]) {
 
-	int& aihealth = ai.health;
-	int& phealth = player.health;
+	int& aihealth = ai.health; // TF: Reference
+	int& phealth = player.health; 
 
 	if (isAI == false) {
 
-		if ((p2_board[ycord][xcord] != " X ") && (p2_board[ycord][xcord] != " o ")) {
+		if ((p2_board[ycord][xcord] != " X ") && (p2_board[ycord][xcord] != " o ")) { // TF: Logical Operator
 			if (p2_board[ycord][xcord] == " # ") {
 				p2_board[ycord][xcord] = " X ";
 				p1_board2[ycord][xcord] = " X ";
@@ -101,7 +101,7 @@ bool Fire(int xcord, int ycord, int ai_ycord, int ai_xcord, bool isAI, string p1
 	else if (isAI == true) {
 
 			while (p1_board[ai_ycord][ai_xcord] == " X " || p1_board[ai_ycord][ai_xcord] == " o ") {
-				ai_xcord = (rand() % 10);
+				ai_xcord = (rand() % 10); // TF: Arithmetic Operator
 				ai_ycord = (rand() % 10);
 				if (p1_board[ai_ycord][ai_xcord] != " X " && p1_board[ai_ycord][ai_xcord] != " o ") {
 					break;
@@ -191,12 +191,33 @@ void player_turn(Player player, AI ai, bool isAI, bool turndone, int x, int y, b
 			didIhittheAI = Fire(xcord, ycord, isAI, ai_ycord, ai_xcord, p1_board, p1_board2, p2_board, p2_board2);
 			draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
 			if (aihealth <= 0) {
-				isAI = true;
+				GotoXY(0, 27);
+				cout << "                                                ";
+				GotoXY(0, 27);
+				cout << "Player hit the AI!" << endl;
+				isAI = false;
 				turndone = true;
 				break;
 			}
-
-			if (didIhittheAI != true) {
+			if (aihealth > 0) {
+				if (didIhittheAI != true) {
+					GotoXY(0, 27);
+					cout << "                                                ";
+					GotoXY(0, 27);
+					cout << "Player missed the AI!" << endl;
+					Sleep(700); //delay for reading msg
+					isAI = true;
+					turndone = true;
+					break;
+				}
+				else {
+					GotoXY(0, 27);
+					cout << "                                                ";
+					GotoXY(0, 27);
+					cout << "Player Hit the AI!" << endl;
+				}
+			}
+			else {
 				isAI = true;
 				turndone = true;
 				break;
@@ -240,11 +261,22 @@ void AI_turn(Player player, AI ai, bool isAI, bool turndone, int x, int y, bool 
 		bool didIhittheplayer = false;
 		didIhittheplayer = Fire(xcord, ycord, isAI, ai_ycord, ai_xcord, p1_board, p1_board2, p2_board, p2_board2);
 		draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
+
 		if (phealth <= 0) {
+			GotoXY(0, 27);
+			cout << "                                                ";
+			GotoXY(0, 27);
+			cout << "AI missed the player!" << endl;
+			Sleep(700); //delay for reading msg
 			turndone = true;
 			break;
 		}
 		if (didIhittheplayer != true) {
+			GotoXY(0, 27);
+			cout << "                                                ";
+			GotoXY(0, 27);
+			cout << "AI hit the player!" << endl;
+			Sleep(300); //delay for reading msg
 			isAI = false;
 			turndone = true;
 			break;

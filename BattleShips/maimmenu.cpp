@@ -10,7 +10,7 @@ using namespace std;
 
 int mainmenu() {
 	system("COLOR 0F");
-	int choice = 1; //banner
+	int choice = 1; //TF: Variable Type
 	animation(choice);
 	int debug;
 	string mainchoice;
@@ -24,11 +24,11 @@ int mainmenu() {
 	cout << "3 - Quit" << endl;
 	cout << "Select An Option: ";
 	cin >> mainchoice;
-	while ((mainchoice != "1") && (mainchoice != "2") && (mainchoice != "3")) {
+	while ((mainchoice != "1") && (mainchoice != "2") && (mainchoice != "3")) { // TF: Relational Operator
 		cout << "Select A Valid Option: ";
 		cin >> mainchoice;
 	}
-	if (mainchoice != "3") {
+	if (mainchoice != "3") { // TF: Conditional Statement
 		cout << "What is your name? ";
 		cin >> name;
 

@@ -11,7 +11,7 @@
 
 using namespace std;
 
-string p1_board[10][10]; //ships
+string p1_board[10][10]; //ships // TF: Array
 string p1_board2[10][10]; //hits and misses
 string p2_board[10][10]; //ships
 string p2_board2[10][10]; //hits and misses
@@ -242,7 +242,7 @@ void draw_grids(int debug, string name) {
 	int p1_1 = 0;
 	int p2_1 = 0;
 
-	for (int h = 0; h < 3; h++) {
+	for (int h = 0; h < 3; h++) { // TF: Iteration Structure // TF: Default Parameter
 		for (int i = 0; i < 10; i++)    //This loops on the rows.
 		{
 			for (int j = 0; j < 10; j++) //This loops on the columns
@@ -482,7 +482,7 @@ void randomisedplacement(bool boatsplaced, int shiptype, bool horizontal, int de
 	int ry;
 	bool tmpbool;
 
-	srand((unsigned int)time(NULL));
+	srand((unsigned int)time(NULL)); // TF: Pseudo Random Number
 
 	while (boatsplaced == false) {
 
@@ -501,7 +501,7 @@ void randomisedplacement(bool boatsplaced, int shiptype, bool horizontal, int de
 		if (isAI == false) {
 			if (shiptype == 5) {
 				if (dir <= 50) {
-					rx = (rand() % 5);
+					rx = (rand() % 5); // TF: Pseudo Random Number
 					ry = (rand() % 9);
 					horizontal = true;
 					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
@@ -594,7 +594,7 @@ void randomisedplacement(bool boatsplaced, int shiptype, bool horizontal, int de
 
 			}
 
-			if (debug == true) {//
+			if (debug == true) {
 				GotoXY(0, 26);
 				cout << "[DEBUG MODE]" << endl;
 				GotoXY(0, 27);
@@ -710,7 +710,7 @@ void randomisedplacement(bool boatsplaced, int shiptype, bool horizontal, int de
 
 			}
 
-			if (debug == true) {//
+			if (debug == true) {
 				GotoXY(0, 26);
 				cout << "[DEBUG MODE]" << endl;
 				GotoXY(0, 27);

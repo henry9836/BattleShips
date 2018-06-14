@@ -1,8 +1,8 @@
 #pragma once
 #define CLASSES
 
-class Player {
-	public:
+class Player { // TF: Class
+	public: // TF: Access Specifier
 		int health;
 };
 
