@@ -1015,38 +1015,142 @@ int start_init(int debug, string name) {
 	//randomise spots
 	if (tmp == "r") {
 		srand((unsigned int)time(NULL));
+		int rx;
+		int ry;
+		bool tmpbool;
 		while (boatsplaced == false) {
 
 			/*
-			hor x: 16, 19, 22, 22, 25
-			hor y: 10, 7, 10, 10, 10
+			hor x 5, 6, 9, 9, 9
+			hor y 9, 9, 7, 7, 8
 
-			ver x: 28, 19, 28, 28, 25
-			ver y: 6, 7, 8, 8, 9
+			ver x 9, 9, 9, 9, 9
+			ver y 5, 6, 7, 7, 8
+
 			
 			*/
 
-			int dir = (rand() % 2) + 1;//1 = horizontal 2 = veritcal
-			int rx;
-			int ry;
+			int dir = (rand() % 100) + 1;//1-50 = horizontal 51-100 = veritcal
 
+		
 			if (shiptype == 5) {
-				if (dir == 1) {
-					rx = (rand() % 16);
-					ry = (rand() % 10);
+				if (dir <= 50) {
+					rx = (rand() % 5);
+					ry = (rand() % 9);
+					horizontal = true;
+					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
 				}
-				if (dir == 2) {
-					rx = (rand() % 28);
+				if (dir >= 51) {
+					rx = (rand() % 9);
+					ry = (rand() % 5);
+					horizontal = false;
+					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (tmpbool == true) {
+					shiptype -= 1;
+				}
+				draw_grids(debug, name);
+			}
+			if (shiptype == 4) {
+				if (dir <= 50) {
+					rx = (rand() % 6);
+					ry = (rand() % 9);
+					horizontal = true;
+					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (dir >= 51) {
+					rx = (rand() % 9);
 					ry = (rand() % 6);
+					horizontal = false;
+					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
 				}
+				if (tmpbool == true) {
+					shiptype -= 1;
+				}
+				draw_grids(debug, name);
+				
+			}
+			if (shiptype == 3) {
+				if (dir <= 50) {
+					rx = (rand() % 9);
+					ry = (rand() % 7);
+					horizontal = true;
+					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (dir >= 51) {
+					rx = (rand() % 7);
+					ry = (rand() % 9);
+					horizontal = false;
+					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (tmpbool == true) {
+					shiptype -= 1;
+				}
+				draw_grids(debug, name);
+
+			}
+			if (shiptype == 2) {
+				if (dir <= 50) {
+					rx = (rand() % 9);
+					ry = (rand() % 7);
+					horizontal = true;
+					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (dir >= 51) {
+					rx = (rand() % 7);
+					ry = (rand() % 9);
+					horizontal = false;
+					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (tmpbool == true) {
+					shiptype -= 1;
+				}
+				draw_grids(debug, name);
+
+			}
+			if (shiptype == 1) {
+				if (dir <= 50) {
+					rx = (rand() % 9);
+					ry = (rand() % 8);
+					horizontal = true;
+					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (dir >= 51) {
+					rx = (rand() % 8);
+					ry = (rand() % 9);
+					horizontal = false;
+					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
+				}
+				if (tmpbool == true) {
+					shiptype -= 1;
+				}
+				draw_grids(debug, name);
+
+			}
+			
+
+			if (debug == true) {//
+				GotoXY(0, 26);
+				cout << "[DEBUG MODE]" << endl;
+				GotoXY(0, 27);
+				cout << "                                                ";
+				GotoXY(0, 27);
+				cout << "X: " << x << " Y: " << y << endl;
+				GotoXY(0, 28);
+				cout << "                                                ";
+				GotoXY(0, 28);
+				cout << "Magic Number: " << rand() % 1000000000 << endl;
+				GotoXY(0, 29);
+				cout << "                                                ";
+				GotoXY(0, 29);
+				cout << "p1_board[" << xcord << ", " << ycord << "] = " << p1_board[ycord][xcord];
+				GotoXY(1, 1);
 			}
 
-
-
-			cout << rx;
-			cout << ry;
-
-
+			if (shiptype == 0) {
+				boatsplaced = true;
+				break;
+			}
 
 		}
 
@@ -1058,7 +1162,8 @@ int start_init(int debug, string name) {
 		exit(0);
 	}
 
-
+	int it;
+	cin >> it;
 
 	return 0;
 }
