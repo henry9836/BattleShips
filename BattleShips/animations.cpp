@@ -10,6 +10,8 @@ CHOICE ANIMATIONS
 1 - Banner
 2 - Cancelled
 3 - Quiting
+4 - Win
+5 - Gameover
 
 */
 
@@ -101,5 +103,14 @@ int animation(int choice) {
 		Sleep(1000);
 		system("COLOR 0F");
 	}
+
+	if (choice == 4) {
+		cout << "You win" << endl;
+	}
+
+	if (choice == 5) {
+		cout << "You lose" << endl;
+	}
+
 	return 0;
 }

@@ -2,6 +2,7 @@
 #include <windows.h>
 #include <conio.h>
 #include <time.h>
+#include <ctime>
 #include <windows.h>
 #include <string>
 #include "animations.h"

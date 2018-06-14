@@ -12,6 +12,9 @@
 
 using namespace std;
 
+Player player;
+AI ai;
+
 bool gameover = false;
 
 void draw_grids(int debug, string name, string p1_board[10][10], string p1_board2[10][10], string p2_board[10][10], string p2_board2[10][10]) {
@@ -66,12 +69,17 @@ void draw_grids(int debug, string name, string p1_board[10][10], string p1_board
 }
 
 bool Fire(int xcord, int ycord, int ai_ycord, int ai_xcord, bool isAI, string p1_board[10][10], string p1_board2[10][10], string p2_board[10][10], string p2_board2[10][10]) {
-	
+
+	int& aihealth = ai.health;
+	int& phealth = player.health;
+
 	if (isAI == false) {
+
 		if ((p2_board[ycord][xcord] != " X ") && (p2_board[ycord][xcord] != " o ")) {
 			if (p2_board[ycord][xcord] == " # ") {
 				p2_board[ycord][xcord] = " X ";
 				p1_board2[ycord][xcord] = " X ";
+				aihealth -= 1;
 				Beep(300, 50);
 				Beep(3000, 50);
 				return true;
@@ -86,6 +94,7 @@ bool Fire(int xcord, int ycord, int ai_ycord, int ai_xcord, bool isAI, string p1
 		}
 		else {
 			Beep(100, 50);
+			return false;
 		}
 	}
 
@@ -102,6 +111,7 @@ bool Fire(int xcord, int ycord, int ai_ycord, int ai_xcord, bool isAI, string p1
 			if (p1_board[ai_ycord][ai_xcord] == " # ") {
 				p2_board2[ai_ycord][ai_xcord] = " X ";
 				p1_board[ai_ycord][ai_xcord] = " X ";
+				phealth -= 1;
 				Beep(300, 50);
 				Beep(3000, 50);
 				return true;
@@ -118,9 +128,13 @@ bool Fire(int xcord, int ycord, int ai_ycord, int ai_xcord, bool isAI, string p1
 		Beep(250, 10000);
 		return false;
 	}
+	return false;
+
+
 }
 
-void player_turn(bool isAI, bool turndone, int x, int y, bool cancel, int ycord, int xcord, int ai_ycord, int ai_xcord, int debug, string name, string p1_board[10][10], string p1_board2[10][10], string p2_board[10][10], string p2_board2[10][10]) {
+void player_turn(Player player, AI ai, bool isAI, bool turndone, int x, int y, bool cancel, int ycord, int xcord, int ai_ycord, int ai_xcord, int debug, string name, string p1_board[10][10], string p1_board2[10][10], string p2_board[10][10], string p2_board2[10][10]) {
+	int& aihealth = ai.health;
 	char keyInput;
 	int asciiInput;
 	isAI = false;
@@ -133,12 +147,6 @@ void player_turn(bool isAI, bool turndone, int x, int y, bool cancel, int ycord,
 		GotoXY(x, y);
 		keyInput = _getch();
 		asciiInput = keyInput;
-
-		/*if (asciiInput == 27) { //esc button
-		animation(2);
-		cancel = true;
-		break;
-		}*/
 
 		if (asciiInput == 72 && y != 1) { //up
 			Beep(1500, 50);
@@ -177,17 +185,23 @@ void player_turn(bool isAI, bool turndone, int x, int y, bool cancel, int ycord,
 		}
 
 		if (asciiInput == 13) { //enter
+
 			isAI = false;
 			bool didIhittheAI = false;
 			didIhittheAI = Fire(xcord, ycord, isAI, ai_ycord, ai_xcord, p1_board, p1_board2, p2_board, p2_board2);
+			draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
+			if (aihealth <= 0) {
+				isAI = true;
+				turndone = true;
+				break;
+			}
+
 			if (didIhittheAI != true) {
 				isAI = true;
 				turndone = true;
 				break;
 			}
-			draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
 		}
-
 
 		if (debug == true) { //Debug
 			GotoXY(0, 26);
@@ -195,11 +209,11 @@ void player_turn(bool isAI, bool turndone, int x, int y, bool cancel, int ycord,
 			GotoXY(0, 27);
 			cout << "                                                ";
 			GotoXY(0, 27);
-			cout << "X: " << x << " Y: " << y << endl;
+			cout << "player.health: " << player.health << endl;
 			GotoXY(0, 28);
 			cout << "                                                ";
 			GotoXY(0, 28);
-			cout << "Magic Number: " << rand() % 1000000000 << endl;
+			cout << "ai.health: " << ai.health << endl;
 			GotoXY(0, 29);
 			cout << "                                                ";
 			GotoXY(0, 29);
@@ -214,8 +228,8 @@ void player_turn(bool isAI, bool turndone, int x, int y, bool cancel, int ycord,
 	return;
 }
 
-void AI_turn(bool isAI, bool turndone, int x, int y, bool cancel, int ycord, int xcord, int ai_ycord, int ai_xcord, int debug, string name, string p1_board[10][10], string p1_board2[10][10], string p2_board[10][10], string p2_board2[10][10]) {
-
+void AI_turn(Player player, AI ai, bool isAI, bool turndone, int x, int y, bool cancel, int ycord, int xcord, int ai_ycord, int ai_xcord, int debug, string name, string p1_board[10][10], string p1_board2[10][10], string p2_board[10][10], string p2_board2[10][10]) {
+	int& phealth = player.health;
 	isAI = true;
 	turndone = false;
 
@@ -226,11 +240,17 @@ void AI_turn(bool isAI, bool turndone, int x, int y, bool cancel, int ycord, int
 		bool didIhittheplayer = false;
 		didIhittheplayer = Fire(xcord, ycord, isAI, ai_ycord, ai_xcord, p1_board, p1_board2, p2_board, p2_board2);
 		draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
+		if (phealth <= 0) {
+			isAI = false;
+			turndone = true;
+			break;
+		}
 		if (didIhittheplayer != true) {
 			isAI = false;
 			turndone = true;
 			break;
 		}
+		
 
 		if (debug == true) { //Debug
 			GotoXY(0, 26);
@@ -258,14 +278,15 @@ void AI_turn(bool isAI, bool turndone, int x, int y, bool cancel, int ycord, int
 }
 
 bool battle(int debug, string name, string p1_board[10][10], string p1_board2[10][10], string p2_board[10][10], string p2_board2[10][10]) {
+	
+	player.health = 17;
+	ai.health = 17;
 
 	draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
 	bool cancel = false;
 	bool isAI = false;
 
 	while (gameover == false) {
-
-		
 		int x = 33;
 		int y = 1;
 		int xcord = 0;
@@ -273,23 +294,44 @@ bool battle(int debug, string name, string p1_board[10][10], string p1_board2[10
 		int ai_ycord = 0;
 		int ai_xcord = 0;
 		bool turndone = false;
+		bool playerwin = false;
 
-		/*LOOP LOOKING FOR # IN BOTH GRIDS*/
+		/* Game */
+
 		while (1 == 1) {
 			/* PLAYER TURN */
 			isAI = false;
-			player_turn(isAI, turndone, x, y, cancel, ycord, xcord, ai_ycord, ai_xcord, debug, name, p1_board, p1_board2, p2_board, p2_board2);
+			player_turn(player, ai, isAI, turndone, x, y, cancel, ycord, xcord, ai_ycord, ai_xcord, debug, name, p1_board, p1_board2, p2_board, p2_board2);
 			draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
+
+			if (ai.health <= 0) {
+				playerwin = true;
+				break;
+			}
 
 			/* AI TURN */
 			isAI = true;
-			AI_turn(isAI, turndone, x, y, cancel, ycord, xcord, ai_ycord, ai_xcord, debug, name, p1_board, p1_board2, p2_board, p2_board2);
+			AI_turn(player, ai, isAI, turndone, x, y, cancel, ycord, xcord, ai_ycord, ai_xcord, debug, name, p1_board, p1_board2, p2_board, p2_board2);
 			draw_grids(debug, name, p1_board, p1_board2, p2_board, p2_board2);
+
+			if (player.health <= 0) {
+				playerwin = false;
+				break;
+			}
 		}
 
-		//return true for player win, false for ai win
+		/* END GAME */
 
+		system("cls");
 
+		if (playerwin == true) {
+			animation(4);
+		}
+		else {
+			animation(5);
+		}
+
+		system("pause");
 
 		return false;
 	}

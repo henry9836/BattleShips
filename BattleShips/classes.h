@@ -1,7 +1,7 @@
 #pragma once
 #define CLASSES
 
-class player {
+class Player {
 	public:
 		int health;
 };
