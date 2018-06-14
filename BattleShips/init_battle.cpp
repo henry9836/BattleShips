@@ -370,9 +370,7 @@ int start_init(int debug, string name) {
 		cout << endl << endl << endl;
 	}
 
-	//Player Select Positions
-
-	//random locations
+	/* -=  PLAYER PLACEMENT =-  */
 
 	//player picked locations
 
@@ -1012,7 +1010,8 @@ int start_init(int debug, string name) {
 
 		}
 	}
-	//randomise spots
+
+	//randomised player spots
 	if (tmp == "r") {
 		srand((unsigned int)time(NULL));
 		int rx;
@@ -1128,7 +1127,6 @@ int start_init(int debug, string name) {
 
 			}
 			
-
 			if (debug == true) {//
 				GotoXY(0, 26);
 				cout << "[DEBUG MODE]" << endl;
@@ -1156,6 +1154,7 @@ int start_init(int debug, string name) {
 
 	}
 
+	/* -=  AI PLACEMENT =-  */
 
 	if (cancel == true) {
 		mainmenu();
