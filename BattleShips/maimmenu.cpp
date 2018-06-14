@@ -16,6 +16,8 @@ int mainmenu() {
 	string mainchoice;
 	string name;
 
+	string* choiceptr = &mainchoice; // TF: Pointer Dereferenced TF: Pointer Initialised
+
 	
 
 	cout << "Main Menu" << endl;
@@ -24,15 +26,16 @@ int mainmenu() {
 	cout << "3 - Quit" << endl;
 	cout << "Select An Option: ";
 	cin >> mainchoice;
-	while ((mainchoice != "1") && (mainchoice != "2") && (mainchoice != "3")) { // TF: Relational Operator
+
+	while ((*choiceptr != "1") && (*choiceptr != "2") && (*choiceptr != "3")) { // TF: Relational Operator
 		cout << "Select A Valid Option: ";
 		cin >> mainchoice;
 	}
-	if (mainchoice != "3") { // TF: Conditional Statement
+	if (*choiceptr != "3") { // TF: Conditional Statement
 		cout << "What is your name? ";
 		cin >> name;
 
-		if (mainchoice == "2") {
+		if (*choiceptr == "2") {
 			debug = 1;
 		}
 		else {
@@ -42,8 +45,11 @@ int mainmenu() {
 		mainmenu();
 	}
 
-	if (mainchoice == "3") {
+	if (*choiceptr == "3") {
 		animation(3);
 	}
+
+	choiceptr = nullptr; // TF: Pointer Initialised
+
 	return 0;
 }

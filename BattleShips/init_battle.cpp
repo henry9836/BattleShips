@@ -484,6 +484,8 @@ void randomisedplacement(bool boatsplaced, int shiptype, bool horizontal, int de
 
 	srand((unsigned int)time(NULL)); // TF: Pseudo Random Number
 
+	
+
 	while (boatsplaced == false) {
 
 		/*
@@ -495,9 +497,8 @@ void randomisedplacement(bool boatsplaced, int shiptype, bool horizontal, int de
 
 
 		*/
-
-		int dir = (rand() % 100) + 1; //1-50 = horizontal 51-100 = veritcal
-
+		int dir = (rand() % 100); //1-50 = horizontal 51-100 = veritcal
+		
 		if (isAI == false) {
 			if (shiptype == 5) {
 				if (dir <= 50) {
@@ -519,14 +520,14 @@ void randomisedplacement(bool boatsplaced, int shiptype, bool horizontal, int de
 			}
 			if (shiptype == 4) {
 				if (dir <= 50) {
-					rx = (rand() % 6);
-					ry = (rand() % 9);
+					rx = (rand() % 4) + 2;
+					ry = (rand() % 4) + 2;
 					horizontal = true;
 					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
 				}
 				if (dir >= 51) {
-					rx = (rand() % 9);
-					ry = (rand() % 6);
+					rx = (rand() % 4) + 2;
+					ry = (rand() % 4) + 2;
 					horizontal = false;
 					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
 				}
@@ -538,14 +539,14 @@ void randomisedplacement(bool boatsplaced, int shiptype, bool horizontal, int de
 			}
 			if (shiptype == 3) {
 				if (dir <= 50) {
-					rx = (rand() % 9);
-					ry = (rand() % 7);
+					rx = (rand() % 4) + 2;
+					ry = (rand() % 4) + 2;
 					horizontal = true;
 					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
 				}
 				if (dir >= 51) {
-					rx = (rand() % 7);
-					ry = (rand() % 9);
+					rx = (rand() % 4) + 2;
+					ry = (rand() % 4) + 2;
 					horizontal = false;
 					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
 				}
@@ -558,12 +559,12 @@ void randomisedplacement(bool boatsplaced, int shiptype, bool horizontal, int de
 			if (shiptype == 2) {
 				if (dir <= 50) {
 					rx = (rand() % 9);
-					ry = (rand() % 7);
+					ry = (rand() % 6);
 					horizontal = true;
 					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
 				}
 				if (dir >= 51) {
-					rx = (rand() % 7);
+					rx = (rand() % 6);
 					ry = (rand() % 9);
 					horizontal = false;
 					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
@@ -604,7 +605,7 @@ void randomisedplacement(bool boatsplaced, int shiptype, bool horizontal, int de
 				GotoXY(0, 28);
 				cout << "                                                ";
 				GotoXY(0, 28);
-				cout << "Magic Number: " << rand() % 1000000000 << endl;
+				cout << "Magic Number: " << dir << endl;
 				GotoXY(0, 29);
 				cout << "                                                ";
 				GotoXY(0, 29);
@@ -654,14 +655,14 @@ void randomisedplacement(bool boatsplaced, int shiptype, bool horizontal, int de
 			}
 			if (shiptype == 3) {
 				if (dir <= 50) {
-					rx = (rand() % 9);
-					ry = (rand() % 7);
+					rx = (rand() % 4) + 2;
+					ry = (rand() % 4) + 2;
 					horizontal = true;
 					tmpbool = AIplaceships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
 				}
 				if (dir >= 51) {
-					rx = (rand() % 7);
-					ry = (rand() % 9);
+					rx = (rand() % 4) + 2;
+					ry = (rand() % 4) + 2;
 					horizontal = false;
 					tmpbool = AIplaceships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
 				}
@@ -673,14 +674,14 @@ void randomisedplacement(bool boatsplaced, int shiptype, bool horizontal, int de
 			}
 			if (shiptype == 2) {
 				if (dir <= 50) {
-					rx = (rand() % 9);
-					ry = (rand() % 7);
+					rx = (rand() % 4) + 2;
+					ry = (rand() % 4) + 2;
 					horizontal = true;
 					tmpbool = AIplaceships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
 				}
 				if (dir >= 51) {
-					rx = (rand() % 7);
-					ry = (rand() % 9);
+					rx = (rand() % 4) + 2;
+					ry = (rand() % 4) + 2;
 					horizontal = false;
 					tmpbool = AIplaceships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
 				}
