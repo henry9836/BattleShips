@@ -114,7 +114,7 @@ bool checkforships(int ship, int xcord, int ycord, bool horizontal, int debug) {
 		}
 
 	}
-	if (debug == true) {
+	if (debug == 1) {
 		if (result == true) {
 			cout << "Approved";
 		}
@@ -224,7 +224,7 @@ bool AIcheckforships(int ship, int xcord, int ycord, bool horizontal, int debug)
 		}
 
 	}
-	if (debug == true) {
+	if (debug == 1) {
 		if (result == true) {
 			cout << "Approved";
 		}
@@ -474,13 +474,15 @@ bool AIplaceships(int x, int shiptype, int xcord, int ycord, bool horizontal, in
 		else {
 			return false;
 		}
+		return false;
 	}
+	return false;
 }
 
 void randomisedplacement(bool boatsplaced, int shiptype, bool horizontal, int debug, string name, int x, int y, int xcord, int ycord, bool isAI) {
 	int rx;
 	int ry;
-	bool tmpbool;
+	bool tmpbool = false;
 
 	srand((unsigned int)time(NULL)); // TF: Pseudo Random Number
 
@@ -558,14 +560,14 @@ void randomisedplacement(bool boatsplaced, int shiptype, bool horizontal, int de
 			}
 			if (shiptype == 2) {
 				if (dir <= 50) {
-					rx = (rand() % 9);
-					ry = (rand() % 6);
+					rx = (rand() % 4) + 2;
+					ry = (rand() % 4) + 2;
 					horizontal = true;
 					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
 				}
 				if (dir >= 51) {
-					rx = (rand() % 6);
-					ry = (rand() % 9);
+					rx = (rand() % 4) + 2;
+					ry = (rand() % 4) + 2;
 					horizontal = false;
 					tmpbool = placeships(x, shiptype, rx, ry, horizontal, debug, name, boatsplaced);
 				}
@@ -595,7 +597,7 @@ void randomisedplacement(bool boatsplaced, int shiptype, bool horizontal, int de
 
 			}
 
-			if (debug == true) {
+			if (debug == 1) {
 				GotoXY(0, 26);
 				cout << "[DEBUG MODE]" << endl;
 				GotoXY(0, 27);
@@ -711,7 +713,7 @@ void randomisedplacement(bool boatsplaced, int shiptype, bool horizontal, int de
 
 			}
 
-			if (debug == true) {
+			if (debug == 1) {
 				GotoXY(0, 26);
 				cout << "[DEBUG MODE]" << endl;
 				GotoXY(0, 27);
@@ -748,7 +750,7 @@ int start_init(int debug, string name) {
 	int asciiInput;
 	bool cancel = false;
 	bool boatsplaced = false;
-	int amountmovedx = 0;
+	//int amountmovedx = 0;
 
 	system("cls");
 
@@ -845,7 +847,7 @@ int start_init(int debug, string name) {
 	int shiptype = 5;
 	bool horizontal = false;
 
-	if (debug == true) {
+	if (debug == 1) {
 		system("COLOR 0A");
 	}
 	else {
@@ -1354,7 +1356,7 @@ int start_init(int debug, string name) {
 
 			}
 
-			if (debug == true) {//
+			if (debug == 1) {//
 				GotoXY(0, 26);
 				cout << "[DEBUG MODE]" << endl;
 				GotoXY(0, 27);

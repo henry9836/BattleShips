@@ -224,7 +224,7 @@ void player_turn(Player player, AI ai, bool isAI, bool turndone, int x, int y, b
 			}
 		}
 
-		if (debug == true) { //Debug
+		if (debug == 1) { //Debug
 			GotoXY(0, 26);
 			cout << "[DEBUG MODE]" << endl;
 			GotoXY(0, 27);
@@ -275,15 +275,23 @@ void AI_turn(Player player, AI ai, bool isAI, bool turndone, int x, int y, bool 
 			GotoXY(0, 27);
 			cout << "                                                ";
 			GotoXY(0, 27);
-			cout << "AI hit the player!" << endl;
-			Sleep(300); //delay for reading msg
+			cout << "AI missed the player!" << endl;
+			Sleep(700); //delay for reading msg
 			isAI = false;
 			turndone = true;
 			break;
 		}
+
+		else {
+			GotoXY(0, 27);
+			cout << "                                                ";
+			GotoXY(0, 27);
+			cout << "AI hit the player!" << endl;
+			Sleep(700); //delay for reading msg
+		}
 		
 
-		if (debug == true) { //Debug
+		if (debug == 1) { //Debug
 			GotoXY(0, 26);
 			cout << "[DEBUG MODE]" << endl;
 			GotoXY(0, 27);
@@ -365,4 +373,5 @@ bool battle(int debug, string name, string p1_board[10][10], string p1_board2[10
 		}
 		return false;
 	}
+	return false;
 }
