@@ -1,6 +1,11 @@
 # Battleships
+										
+User Manual
 
-Battleships is a project that I have created for university
+Controls:
 
+R - Rotate Ship
+Enter - Fire/Place Ship
+Arrow Keys - move cursor
 
-Battleships written in c++ by Henry Oliver
+Created by Henry Oliver
