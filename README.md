@@ -1,11 +1,12 @@
 # Battleships
-										
-User Manual
+		
+### Built By Henry Oliver
+		
 
-Controls:
+
+### Controls:
 
 R - Rotate Ship
 Enter - Fire/Place Ship
 Arrow Keys - move cursor
 
-Created by Henry Oliver
