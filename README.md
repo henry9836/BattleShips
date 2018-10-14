@@ -2,7 +2,7 @@
 		
 ### Built By Henry Oliver
 		
-![alt text] https://i.imgur.com/QKfMc6q.png
+![alt text](https://i.imgur.com/QKfMc6q.png)
 
 ### Controls:
 
