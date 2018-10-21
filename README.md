@@ -7,7 +7,9 @@
 ### Controls:
 
 R - Rotate Ship
+
 Enter - Fire/Place Ship
+
 Arrow Keys - move cursor
 
 ### Features:
